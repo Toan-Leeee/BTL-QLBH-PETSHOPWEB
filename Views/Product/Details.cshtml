@@ -1,0 +1,84 @@
+@model ProductDetailsViewModel
+@{
+    ViewData["Title"] = Model.Product.TenSanPham;
+}
+<section class="section section-light">
+    <div class="container detail-layout">
+        <div class="detail-gallery">
+            <img class="main-image" src="@Model.Product.HinhAnh" alt="@Model.Product.TenSanPham" />
+            <div class="thumb-grid">
+                <img src="@Model.Product.HinhAnh" alt="Ảnh 1" />
+                <img src="~/images/products/corgi.svg" alt="Ảnh 2" />
+                <img src="~/images/products/poodle-brown.svg" alt="Ảnh 3" />
+                <img src="~/images/products/shiba.svg" alt="Ảnh 4" />
+            </div>
+        </div>
+        <div class="detail-info">
+            <p class="breadcrumb">Trang chủ &gt; Sản phẩm &gt; @Model.Product.DanhMuc?.TenDanhMuc &gt; @Model.Product.TenSanPham</p>
+            <h1>@Model.Product.TenSanPham</h1>
+            <div class="price">@Model.Product.GiaBan.ToString("N0") VND</div>
+            <div class="hero-actions detail-actions">
+                <form asp-controller="Cart" asp-action="BuyNow" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Product.MaSanPham" />
+                    <button class="btn btn-primary" type="submit">Mua ngay</button>
+                </form>
+                <form asp-controller="Cart" asp-action="Add" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Product.MaSanPham" />
+                    <input type="hidden" name="returnUrl" value="@($"{Context.Request.Path}{Context.Request.QueryString}")" />
+                    <button class="btn btn-outline" type="submit">Thêm vào giỏ hàng</button>
+                </form>
+            </div>
+            <table class="spec-table">
+                <tr><th>SKU</th><td>@Model.Product.MaSanPham</td></tr>
+                <tr><th>Danh mục</th><td>@Model.Product.DanhMuc?.TenDanhMuc</td></tr>
+                <tr><th>Tồn kho</th><td>@Model.Product.SoLuongTonKho</td></tr>
+                <tr><th>Mô tả</th><td>@Model.Product.MoTa</td></tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container section-head compact">
+        <h2>Khách hàng của chúng tôi</h2>
+    </div>
+    <div class="container story-strip">
+        @foreach (var story in Model.CustomerStories)
+        {
+            <div class="story-card"><img src="@story.ImageUrl" alt="@story.Title" /></div>
+        }
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container section-head compact">
+        <div>
+            <span class="eyebrow">Có gì mới?</span>
+            <h2>Xem thêm sản phẩm cùng danh mục</h2>
+        </div>
+    </div>
+    <div class="container product-grid four">
+        @foreach (var item in Model.RelatedProducts)
+        {
+            <article class="product-card">
+                <a asp-action="Details" asp-route-id="@item.MaSanPham"><img src="@item.HinhAnh" alt="@item.TenSanPham" /></a>
+                <div class="product-body">
+                    <h3>@item.TenSanPham</h3>
+                    <p>@item.MoTa</p>
+                    <strong>@item.GiaBan.ToString("N0") VND</strong>
+                    <div class="card-actions">
+                        <a asp-action="Details" asp-route-id="@item.MaSanPham" class="btn btn-outline small">Chi tiết</a>
+                        <form asp-controller="Cart" asp-action="Add" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.MaSanPham" />
+                            <input type="hidden" name="returnUrl" value="@($"{Context.Request.Path}{Context.Request.QueryString}")" />
+                            <button type="submit" class="btn btn-primary small">Thêm vào giỏ</button>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</section>

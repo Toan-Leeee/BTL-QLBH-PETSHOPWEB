@@ -1,0 +1,132 @@
+@model AdminImportsViewModel
+@{
+    ViewData["Title"] = "Quan ly phieu nhap";
+}
+<section class="admin-section">
+    <div class="admin-hero">
+        <h1>Quan ly phieu nhap</h1>
+        <p>Lap phieu nhap kho, cap nhat ton kho va xem chi tiet nhap hang theo nha cung cap.</p>
+    </div>
+
+    <div class="admin-panel search-panel">
+        <form method="get" class="admin-filter-grid three-wide">
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma phieu, nha cung cap..." />
+            <div></div>
+            <div class="inline-actions end">
+                <button class="btn btn-primary" type="submit">Tim kiem</button>
+                <a asp-action="Imports" class="btn btn-outline">Lam moi</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="admin-grid two-col admin-stretch">
+        <div class="admin-panel">
+            <div class="section-head compact with-meta">
+                <div>
+                    <h2>Danh sach phieu nhap</h2>
+                    <small>@Model.Receipts.Count() phieu nhap</small>
+                </div>
+            </div>
+
+            @if (!Model.Receipts.Any())
+            {
+                <div class="admin-empty-state">
+                    <h3>Chua co phieu nhap</h3>
+                    <p>Hay tao phieu nhap moi de cap nhat ton kho.</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ma PN</th>
+                                <th>Nha cung cap</th>
+                                <th>Ngay nhap</th>
+                                <th>So dong</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Receipts)
+                        {
+                            <tr class="@(item.MaPhieuNhap == Model.SelectedId ? "row-selected" : string.Empty)">
+                                <td>@item.MaPhieuNhap</td>
+                                <td>
+                                    <div class="table-title">@item.NhaCungCap</div>
+                                    <small>@item.NhanVien?.HoTen</small>
+                                </td>
+                                <td>@item.NgayNhap.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@item.ChiTietPhieuNhaps.Count</td>
+                                <td>
+                                    <a asp-action="Imports"
+                                       asp-route-keyword="@Model.Keyword"
+                                       asp-route-selectedId="@item.MaPhieuNhap"
+                                       class="btn btn-outline small">Chi tiet</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+        <div class="admin-side-stack sticky-panel">
+            <div class="admin-panel form-panel">
+                <div class="section-head compact with-meta">
+                    <div>
+                        <h2>Lap phieu nhap moi</h2>
+                        <small>Tao toi da 3 dong nhap trong mot lan luu</small>
+                    </div>
+                </div>
+
+                <form asp-action="SaveImport" method="post" class="stack-form" data-admin-form="imports" data-import-form>
+                    @Html.AntiForgeryToken()
+                    <input name="MaPhieuNhap" value="@Model.FormReceipt.MaPhieuNhap" placeholder="Ma phieu nhap (de trong de tu sinh)" />
+                    <div class="form-grid two">
+                        <input name="NgayNhap" type="datetime-local" value="@Model.FormReceipt.NgayNhap.ToString("yyyy-MM-ddTHH:mm")" />
+                        <input name="NhaCungCap" value="@Model.FormReceipt.NhaCungCap" placeholder="Nha cung cap" />
+                    </div>
+
+                    @for (var i = 0; i < 3; i++)
+                    {
+                        <div class="form-grid three-wide" data-import-row>
+                            <select name="productIds" data-import-product>
+                                <option value="">Chon san pham</option>
+                                @foreach (var product in Model.Products)
+                                {
+                                    <option value="@product.MaSanPham">@product.MaSanPham - @product.TenSanPham</option>
+                                }
+                            </select>
+                            <input name="quantities" type="number" min="0" placeholder="So luong nhap" data-import-quantity />
+                            <input name="importPrices" type="number" min="0" step="1000" placeholder="Gia nhap" data-import-price />
+                        </div>
+                    }
+
+                    <button class="btn btn-primary full" type="submit">Luu phieu nhap</button>
+                </form>
+            </div>
+
+            @if (Model.SelectedReceipt is not null)
+            {
+                <div class="admin-panel" data-import-details>
+                    <h2>Chi tiet phieu nhap</h2>
+                    <div class="mini-list">
+                        @foreach (var item in Model.SelectedReceipt.ChiTietPhieuNhaps)
+                        {
+                            <div class="mini-list-item">
+                                <div>
+                                    <strong>@(item.SanPham?.TenSanPham ?? item.MaSanPham)</strong>
+                                    <small>@item.SoLuongNhap x @item.GiaNhap.ToString("N0")</small>
+                                </div>
+                                <strong>@((item.SoLuongNhap * item.GiaNhap).ToString("N0"))</strong>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

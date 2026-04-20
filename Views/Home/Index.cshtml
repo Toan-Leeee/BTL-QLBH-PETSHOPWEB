@@ -1,0 +1,93 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Trang chủ";
+    var returnUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <h1>Thêm Một Bạn<br />Thêm Ngàn Niềm Vui!</h1>
+            <p>Có một con thú cưng đồng nghĩa với việc bạn có thêm niềm vui mỗi ngày. Chúng tôi có hơn 200 con thú cưng khác nhau có thể đáp ứng nhu cầu của bạn!</p>
+            <div class="hero-actions">
+                <a href="#featured" class="btn btn-outline">Giới Thiệu</a>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Khám Phá Ngay</a>
+            </div>
+        </div>
+        <div class="hero-art">
+            <img src="~/images/banners/bannerHome.png" alt="Hero" />
+        </div>
+    </div>
+</section>
+
+<section id="featured" class="section section-light">
+    <div class="container section-head">
+        <div>
+            <span class="eyebrow">Có gì mới?</span>
+            <h2>Một Số Vật Nuôi Của Chúng Tôi</h2>
+        </div>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-outline small">Xem thêm</a>
+    </div>
+    <div class="container product-grid four">
+        @foreach (var item in Model.FeaturedProducts)
+        {
+            <article class="product-card">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.MaSanPham">
+                    <img src="@item.HinhAnh" alt="@item.TenSanPham" />
+                </a>
+                <div class="product-body">
+                    <h3><a asp-controller="Product" asp-action="Details" asp-route-id="@item.MaSanPham">@item.TenSanPham</a></h3>
+                    <p>@item.MoTa</p>
+                    <strong>@item.GiaBan.ToString("N0") VND</strong>
+                    <div class="card-actions">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.MaSanPham" class="btn btn-outline small">Xem chi tiết</a>
+                        <form asp-controller="Cart" asp-action="Add" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.MaSanPham" />
+                            <input type="hidden" name="returnUrl" value="@returnUrl" />
+                            <button type="submit" class="btn btn-primary small">Thêm vào giỏ</button>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</section>
+
+<section class="section banner-section">
+    <div class="container promo-banner">
+        <div class="promo-visual">
+            <img src="~/images/banners/love-pet.svg" alt="Banner phụ" />
+        </div>
+        <div class="promo-copy">
+            <h2>Thêm Một Bạn<br />Thêm Ngàn Niềm Vui!</h2>
+            <p>Có một con thú cưng đồng nghĩa với việc bạn có thêm niềm vui mỗi ngày.</p>
+            <div class="hero-actions">
+                <a href="#featured" class="btn btn-outline">Giới Thiệu</a>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Khám Phá Ngay</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container section-head">
+        <div>
+            <span class="eyebrow">Có thể bạn đã biết?</span>
+            <h2>Kiến Thức Thú Cưng Hữu Ích</h2>
+        </div>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline small">Xem thêm</a>
+    </div>
+    <div class="container article-grid">
+        @foreach (var article in Model.Articles)
+        {
+            <article class="article-card">
+                <img src="@article.ImageUrl" alt="@article.Title" />
+                <div class="article-body">
+                    <span class="badge">@article.Badge</span>
+                    <h3>@article.Title</h3>
+                    <p>@article.Summary</p>
+                </div>
+            </article>
+        }
+    </div>
+</section>

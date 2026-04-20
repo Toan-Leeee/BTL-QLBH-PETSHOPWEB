@@ -1,0 +1,95 @@
+@model ProductListViewModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+    var returnUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+<section class="inner-hero catalog-hero">
+    <div class="container inner-hero-card">
+        <div class="hero-art small"><img src="~/images/banners/bannerSP.png" alt="Banner" /></div>
+        <div class="hero-copy">
+            <h1>Thêm Một Bạn<br />Thêm Ngàn Niềm Vui!</h1>
+            <p>Có một con thú cưng đồng nghĩa với việc bạn có thêm niềm vui mỗi ngày. Chúng tôi có hơn 200 con thú cưng khác nhau có thể đáp ứng nhu cầu của bạn!</p>
+            <div class="hero-actions">
+                <a href="#catalog" class="btn btn-outline">Giới Thiệu</a>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Khám Phá Ngay</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="catalog" class="section section-light">
+    <div class="container catalog-layout">
+        <aside class="filter-sidebar">
+            <h3>Bộ lọc</h3>
+            <form method="get" class="filter-form">
+                <input type="text" name="Keyword" value="@Model.Filter.Keyword" placeholder="Từ khóa..." />
+                <select name="CategoryId">
+                    <option value="">Tất cả danh mục</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        if (Model.Filter.CategoryId == category.MaDanhMuc)
+                        {
+                            <option value="@category.MaDanhMuc" selected>@category.TenDanhMuc</option>
+                        }
+                        else
+                        {
+                            <option value="@category.MaDanhMuc">@category.TenDanhMuc</option>
+                        }
+                    }
+                </select>
+                <button type="submit" class="btn btn-primary full">Lọc</button>
+            </form>
+        </aside>
+        <div>
+            <div class="section-head compact">
+                <h2>@Model.PageTitle</h2>
+                <span class="eyebrow">@Model.Products.Count() sản phẩm trang này</span>
+            </div>
+
+            @if (!Model.Products.Any())
+            {
+                <div class="empty-state">
+                    <h3>Không tìm thấy sản phẩm phù hợp</h3>
+                    <p>Hãy đổi từ khóa tìm kiếm hoặc quay về toàn bộ danh mục.</p>
+                    <a asp-action="Index" class="btn btn-primary">Xem tất cả sản phẩm</a>
+                </div>
+            }
+            else
+            {
+                <div class="product-grid three">
+                    @foreach (var item in Model.Products)
+                    {
+                        <article class="product-card">
+                            <a asp-action="Details" asp-route-id="@item.MaSanPham"><img src="@item.HinhAnh" alt="@item.TenSanPham" /></a>
+                            <div class="product-body">
+                                <h3><a asp-action="Details" asp-route-id="@item.MaSanPham">@item.TenSanPham</a></h3>
+                                <p>@item.MoTa</p>
+                                <strong>@item.GiaBan.ToString("N0") VND</strong>
+                                <div class="card-actions">
+                                    <a asp-action="Details" asp-route-id="@item.MaSanPham" class="btn btn-outline small">Chi tiết</a>
+                                    <form asp-controller="Cart" asp-action="Add" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.MaSanPham" />
+                                        <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                        <button type="submit" class="btn btn-primary small">Thêm vào giỏ</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+
+            <div class="pagination">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <a class="@(i == Model.CurrentPage ? "active" : string.Empty)"
+                       asp-action="Index"
+                       asp-route-Keyword="@Model.Filter.Keyword"
+                       asp-route-CategoryId="@Model.Filter.CategoryId"
+                       asp-route-Page="@i">@i</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

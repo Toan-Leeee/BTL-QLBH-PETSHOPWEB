@@ -1,0 +1,76 @@
+@model CartViewModel
+@{
+    ViewData["Title"] = "Gio hang";
+}
+<section class="section section-warm">
+    <div class="container page-title-block">
+        <p class="breadcrumb">Trang chu &gt; Gio hang</p>
+        <h1>Gio hang cua ban</h1>
+        <p>Kiem tra lai san pham truoc khi tien hanh tao don hang.</p>
+    </div>
+
+    <div class="container cart-layout">
+        <div>
+            <div class="stepper">
+                <div class="step active">1 Gio hang</div>
+                <div class="step">2 Thanh toan</div>
+                <div class="step">3 Hoan tat</div>
+            </div>
+
+            <div class="cart-card">
+                @if (!Model.Items.Any())
+                {
+                    <div class="empty-state compact">
+                        <h3>Gio hang dang trong</h3>
+                        <p>Ban chua them san pham nao vao gio hang.</p>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Kham pha san pham</a>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="cart-row">
+                            <img src="@item.ImageUrl" alt="@item.Name" />
+                            <div class="cart-info">
+                                <h3>@item.Name</h3>
+                                <p>@item.Subtitle</p>
+                                <span class="tag">@item.Label</span>
+                                <strong>@item.Price.ToString("N0") VND</strong>
+                            </div>
+                            <form asp-action="Update" method="post" class="quantity-form">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" />
+                                <button type="submit" class="btn btn-outline small">Cap nhat</button>
+                            </form>
+                            <div class="line-total">@item.LineTotal.ToString("N0")</div>
+                            <form asp-action="Remove" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <button type="submit" class="remove-btn">x</button>
+                            </form>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <aside>
+            <div class="summary-card">
+                <h2>Tom tat don hang</h2>
+                <div class="summary-row"><span>Tam tinh</span><strong>@Model.SubTotal.ToString("N0")</strong></div>
+                <div class="summary-row"><span>Phi van chuyen</span><strong>@Model.ShippingFee.ToString("N0")</strong></div>
+                <div class="summary-row total"><span>Tong cong</span><strong>@Model.GrandTotal.ToString("N0")</strong></div>
+                @if (Model.Items.Any())
+                {
+                    <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary full">Tien hanh thanh toan</a>
+                }
+                else
+                {
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary full">Mua sam ngay</a>
+                }
+            </div>
+        </aside>
+    </div>
+</section>

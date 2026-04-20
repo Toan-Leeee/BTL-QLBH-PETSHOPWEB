@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" rx="48" fill="#faecc7"/>
+  <circle cx="320" cy="350" r="170" fill="#ffffff" opacity="0.55"/>
+  <circle cx="840" cy="250" r="110" fill="#ffffff" opacity="0.28"/>
+  <circle cx="940" cy="620" r="170" fill="#ffffff" opacity="0.22"/>
+  <path d="M170 660C220 560 350 510 470 530C625 557 685 688 790 728C886 765 1012 731 1070 650V822H142V700C152 686 161 673 170 660Z" fill="#0d3b66" opacity="0.12"/>
+  <text x="600" y="420" font-size="74" text-anchor="middle" font-family="Segoe UI, Arial" fill="#0d3b66" font-weight="700">Chế độ ăn</text>
+  <text x="600" y="500" font-size="32" text-anchor="middle" font-family="Segoe UI, Arial" fill="#33597f">sieuPet mock asset</text>
+</svg>

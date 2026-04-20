@@ -1,0 +1,59 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Thanh toan";
+}
+<section class="section section-warm">
+    <div class="container page-title-block">
+        <p class="breadcrumb">Trang chu &gt; Gio hang &gt; Thanh toan</p>
+        <h1>Thanh toan</h1>
+        <p>Thong tin ben duoi chi dung de xac nhan dat don, du lieu don hang se luu theo dung ERD.</p>
+    </div>
+
+    <div class="container cart-layout checkout-grid">
+        <div>
+            <div class="stepper">
+                <div class="step">1 Gio hang</div>
+                <div class="step active">2 Thanh toan</div>
+                <div class="step">3 Hoan tat</div>
+            </div>
+
+            <form method="post" class="checkout-form">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+                <div class="form-card">
+                    <h2>Thong tin lien he</h2>
+                    <div class="form-grid two">
+                        <input asp-for="FullName" placeholder="Ho va ten" />
+                        <input asp-for="Phone" placeholder="So dien thoai" />
+                    </div>
+                    <input asp-for="Address" placeholder="Dia chi lien he" />
+                    <span asp-validation-for="FullName" class="field-validation"></span>
+                    <span asp-validation-for="Phone" class="field-validation"></span>
+                    <span asp-validation-for="Address" class="field-validation"></span>
+                </div>
+
+                <button class="btn btn-primary large" type="submit">Tao don hang</button>
+            </form>
+        </div>
+
+        <aside>
+            <div class="summary-card checkout-summary">
+                <h2>Don hang cua ban</h2>
+                @foreach (var item in Model.Cart.Items)
+                {
+                    <div class="checkout-item">
+                        <h3>@item.Name</h3>
+                        <p>@item.Subtitle</p>
+                        <strong>@item.LineTotal.ToString("N0") VND</strong>
+                    </div>
+                }
+                <div class="summary-row"><span>Tam tinh</span><strong>@Model.Cart.SubTotal.ToString("N0")</strong></div>
+                <div class="summary-row"><span>Phi van chuyen</span><strong>@Model.Cart.ShippingFee.ToString("N0")</strong></div>
+                <div class="summary-row total"><span>Tong thanh toan</span><strong>@Model.Cart.GrandTotal.ToString("N0")</strong></div>
+            </div>
+        </aside>
+    </div>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

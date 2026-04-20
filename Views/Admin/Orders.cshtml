@@ -1,0 +1,138 @@
+@model AdminOrdersViewModel
+@{
+    ViewData["Title"] = "Quan ly don hang";
+}
+<section class="admin-section">
+    <div class="admin-hero">
+        <h1>Quan ly don hang</h1>
+        <p>Theo doi don hang theo dung ERD: nhan vien, khach hang, ngay tao, trang thai va tong tien.</p>
+    </div>
+
+    <div class="admin-panel search-panel">
+        <form method="get" class="admin-filter-grid three-wide">
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma don, khach hang, nhan vien..." />
+            <select name="status">
+                <option value="">Tat ca trang thai</option>
+                @foreach (var option in Model.StatusOptions)
+                {
+                    if (Model.Status == option)
+                    {
+                        <option value="@option" selected>@option</option>
+                    }
+                    else
+                    {
+                        <option value="@option">@option</option>
+                    }
+                }
+            </select>
+            <div class="inline-actions end">
+                <button class="btn btn-primary" type="submit">Loc</button>
+                <a asp-action="Orders" class="btn btn-outline">Lam moi</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="admin-grid two-col admin-stretch">
+        <div class="admin-panel">
+            <div class="section-head compact with-meta">
+                <div>
+                    <h2>Danh sach don hang</h2>
+                    <small>@Model.Orders.Count() don hang</small>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Ma don</th>
+                            <th>Khach hang</th>
+                            <th>Nhan vien</th>
+                            <th>Tong tien</th>
+                            <th>Trang thai</th>
+                            <th>Ngay tao</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Orders)
+                    {
+                        <tr class="@(item.MaDonHang == Model.SelectedId ? "row-selected" : string.Empty)">
+                            <td>@item.MaDonHang</td>
+                            <td>@(item.KhachHang?.TenKhachHang ?? item.MaKhachHang)</td>
+                            <td>@(item.NhanVien?.HoTen ?? item.MaNhanVien)</td>
+                            <td>@item.TongTien.ToString("N0")</td>
+                            <td><span class="status-chip neutral">@item.TrangThai</span></td>
+                            <td>@item.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                <a asp-action="Orders" asp-route-keyword="@Model.Keyword" asp-route-status="@Model.Status" asp-route-selectedId="@item.MaDonHang" class="btn btn-outline small">Chi tiet</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="admin-side-stack sticky-panel">
+            <div class="admin-panel form-panel" data-order-form-panel>
+                <div class="section-head compact with-meta">
+                    <div>
+                        <h2>Cap nhat trang thai</h2>
+                        <small>@(Model.SelectedOrder?.MaDonHang ?? "Chon don hang de xem")</small>
+                    </div>
+                </div>
+
+                @if (Model.SelectedOrder is null)
+                {
+                    <div class="admin-empty-state compact"><p>Chua co don hang nao duoc chon.</p></div>
+                }
+                else
+                {
+                    <form asp-action="UpdateOrder" method="post" class="stack-form">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@Model.SelectedOrder.MaDonHang" />
+                        <input type="text" value="@Model.SelectedOrder.MaDonHang" disabled />
+                        <div class="form-grid two">
+                            <input type="text" value="@(Model.SelectedOrder.KhachHang?.TenKhachHang ?? Model.SelectedOrder.MaKhachHang)" disabled />
+                            <input type="text" value="@(Model.SelectedOrder.NhanVien?.HoTen ?? Model.SelectedOrder.MaNhanVien)" disabled />
+                        </div>
+                        <input type="text" value="@Model.SelectedOrder.TongTien.ToString("N0")" disabled />
+                        <select name="status">
+                            @foreach (var option in Model.StatusOptions)
+                            {
+                                if (Model.SelectedOrder.TrangThai == option)
+                                {
+                                    <option value="@option" selected>@option</option>
+                                }
+                                else
+                                {
+                                    <option value="@option">@option</option>
+                                }
+                            }
+                        </select>
+                        <button class="btn btn-primary full" type="submit">Cap nhat don hang</button>
+                    </form>
+                }
+            </div>
+
+            @if (Model.SelectedOrder is not null)
+            {
+                <div class="admin-panel" data-order-details-panel>
+                    <h2>Chi tiet don hang</h2>
+                    <div class="mini-list">
+                        @foreach (var item in Model.SelectedOrder.ChiTietDonHangs)
+                        {
+                            <div class="mini-list-item">
+                                <div>
+                                    <strong>@(item.SanPham?.TenSanPham ?? item.MaSanPham)</strong>
+                                    <small>@item.SoLuong x @item.DonGiaBan.ToString("N0")</small>
+                                </div>
+                                <strong>@item.ThanhTien.ToString("N0")</strong>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

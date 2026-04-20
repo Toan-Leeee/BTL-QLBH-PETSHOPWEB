@@ -1,0 +1,6 @@
+SELECT TOP (1000) [PK_MaKH]
+      ,[sTenKH]
+      ,[sSoDienThoai]
+      ,[sEmail]
+      ,[sMatKhau]
+  FROM [QLSieuPet_ERD].[dbo].[tblKhachHang]

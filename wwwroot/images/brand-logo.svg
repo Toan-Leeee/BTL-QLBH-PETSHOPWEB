@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="88" viewBox="0 0 320 88" fill="none">
+  <rect width="320" height="88" rx="24" fill="none"/>
+  <circle cx="28" cy="44" r="12" fill="#F0C15D"/>
+  <circle cx="17" cy="28" r="7" fill="#0D3B66"/>
+  <circle cx="39" cy="22" r="7" fill="#0D3B66"/>
+  <circle cx="48" cy="40" r="7" fill="#0D3B66"/>
+  <path d="M17 50C17 41.1634 24.1634 34 33 34H38C46.8366 34 54 41.1634 54 50V51C54 58.1797 48.1797 64 41 64H30C22.8203 64 17 58.1797 17 51V50Z" fill="#0D3B66"/>
+  <text x="76" y="40" fill="#0D3B66" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800">sieu</text>
+  <text x="142" y="40" fill="#F0C15D" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800">pet</text>
+  <text x="76" y="62" fill="#6F7B87" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2">PET SHOP</text>
+</svg>

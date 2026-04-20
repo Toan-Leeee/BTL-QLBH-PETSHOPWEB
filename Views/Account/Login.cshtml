@@ -1,0 +1,48 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<section class="auth-shell">
+    <div class="auth-card">
+        <h1>Đăng nhập</h1>
+
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <input asp-for="EmailOrPhone" placeholder="Email / Số điện thoại" />
+            <span asp-validation-for="EmailOrPhone" class="text-danger"></span>
+
+            <input asp-for="Password" type="password" placeholder="Mật khẩu" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <div class="auth-row between">
+                <label class="remember-label" for="RememberMe">
+                    <input asp-for="RememberMe" />
+                    <span>Ghi nhớ đăng nhập</span>
+                </label>
+
+                <a asp-action="ForgotPassword">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary full large">ĐĂNG NHẬP</button>
+        </form>
+
+        <div class="divider">HOẶC</div>
+
+        <div class="social-login">
+            <button type="button" class="btn btn-outline full">Facebook</button>
+            <button type="button" class="btn btn-outline full">Google</button>
+        </div>
+
+        <p class="auth-hint">
+            Bạn chưa có tài khoản? <a asp-action="Register">Đăng ký</a>
+        </p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

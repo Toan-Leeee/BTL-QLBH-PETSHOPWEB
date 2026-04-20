@@ -1,0 +1,44 @@
+@model OrderSuccessViewModel
+@{
+    ViewData["Title"] = "Dat don thanh cong";
+}
+<section class="section section-warm">
+    <div class="container page-title-block">
+        <p class="breadcrumb">Trang chu &gt; Gio hang &gt; Thanh toan &gt; Hoan tat</p>
+        <h1>Dat don thanh cong</h1>
+        <p>Don hang cua ban da duoc ghi nhan trong he thong.</p>
+    </div>
+
+    <div class="container cart-layout success-grid">
+        <div>
+            <div class="stepper">
+                <div class="step">1 Gio hang</div>
+                <div class="step">2 Thanh toan</div>
+                <div class="step active">3 Hoan tat</div>
+            </div>
+            <div class="success-card">
+                <div class="success-icon">OK</div>
+                <h2>Dat don thanh cong</h2>
+                <p>He thong da tao don hang theo mo hinh ERD va cap nhat chi tiet don hang tu gio hang cua ban.</p>
+                <div class="hero-actions">
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Tiep tuc mua sam</a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline">Ve trang chu</a>
+                </div>
+            </div>
+        </div>
+        <aside>
+            <div class="summary-card">
+                <h2>Thong tin don hang</h2>
+                <div class="order-code">Ma don hang <strong>@Model.Order.MaDonHang</strong></div>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="checkout-item compact">
+                        <h3>@item.Name</h3>
+                        <p>@item.Quantity x @item.Price.ToString("N0")</p>
+                    </div>
+                }
+                <div class="summary-row total"><span>Tong thanh toan</span><strong>@Model.Order.TongTien.ToString("N0")</strong></div>
+            </div>
+        </aside>
+    </div>
+</section>

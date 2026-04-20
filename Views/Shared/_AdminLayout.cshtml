@@ -1,0 +1,55 @@
+@{
+    var userName = Context.Session.GetString("UserName") ?? "Quan tri vien";
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
+    var pageCssPath = $"~/css/{currentController}.{currentAction}.css";
+    var pageJsPath = $"~/js/{currentController}.{currentAction}.js";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin SieuPet</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="@pageCssPath" asp-append-version="true" />
+</head>
+<body class="admin-page-shell">
+    <div class="admin-shell">
+        <aside class="admin-sidebar">
+            <a asp-controller="Home" asp-action="Index" class="brand sidebar-brand">
+                <img src="~/images/logo.png" alt="SieuPet" />
+            </a>
+            <nav>
+                <a class="@(currentAction == "Products" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Products">San pham</a>
+                <a class="@(currentAction == "Categories" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Categories">Danh muc</a>
+                <a class="@(currentAction == "Orders" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Orders">Don hang</a>
+                <a class="@(currentAction == "Imports" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Imports">Phieu nhap</a>
+                <a class="@(currentAction == "Customers" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Customers">Khach hang</a>
+                <a class="@(currentAction == "Accounts" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Accounts">Nhan vien</a>
+                <a class="@(currentAction == "Reports" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Reports">Bao cao</a>
+            </nav>
+            <div class="admin-profile">
+                <strong>@userName</strong>
+                <span>Quan tri vien</span>
+                <a asp-controller="Account" asp-action="Logout" class="btn btn-outline light small">Dang xuat</a>
+            </div>
+        </aside>
+        <div class="admin-main">
+            @if (TempData["Success"] is string success)
+            {
+                <div class="flash success">@success</div>
+            }
+            @if (TempData["Error"] is string error)
+            {
+                <div class="flash error">@error</div>
+            }
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/js/admin.js" asp-append-version="true"></script>
+    <script src="@pageJsPath" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

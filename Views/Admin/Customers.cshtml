@@ -1,0 +1,106 @@
+@model AdminCustomersViewModel
+@{
+    ViewData["Title"] = "Quan ly khach hang";
+}
+<section class="admin-section">
+    <div class="admin-hero">
+        <h1>Quan ly khach hang</h1>
+        <p>Theo doi tai khoan khach hang, thong tin lien he va lich su dat hang tu khu vuc admin.</p>
+    </div>
+
+    <div class="admin-panel search-panel">
+        <form method="get" class="admin-filter-grid three-wide">
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma, ten, email, so dien thoai..." />
+            <div></div>
+            <div class="inline-actions end">
+                <button class="btn btn-primary" type="submit">Tim kiem</button>
+                <a asp-action="Customers" class="btn btn-outline">Lam moi</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="admin-grid two-col admin-stretch">
+        <div class="admin-panel">
+            <div class="section-head compact with-meta">
+                <div>
+                    <h2>Danh sach khach hang</h2>
+                    <small>@Model.Customers.Count() tai khoan</small>
+                </div>
+            </div>
+
+            @if (!Model.Customers.Any())
+            {
+                <div class="admin-empty-state">
+                    <h3>Chua co khach hang</h3>
+                    <p>Ban co the tao tai khoan khach hang moi ngay tai day.</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ma KH</th>
+                                <th>Thong tin</th>
+                                <th>Don hang</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Customers)
+                        {
+                            <tr class="@(item.MaKhachHang == Model.SelectedId ? "row-selected" : string.Empty)">
+                                <td>@item.MaKhachHang</td>
+                                <td>
+                                    <div class="table-title">@item.TenKhachHang</div>
+                                    <small>@item.Email</small><br />
+                                    <small>@item.SoDienThoai</small>
+                                </td>
+                                <td>@item.DonHangs.Count</td>
+                                <td>
+                                    <div class="inline-actions">
+                                        <a asp-action="Customers"
+                                           asp-route-keyword="@Model.Keyword"
+                                           asp-route-selectedId="@item.MaKhachHang"
+                                           class="btn btn-outline small">Sua</a>
+                                        <form asp-action="DeleteCustomer" method="post" class="inline-form" data-confirm="Xoa khach hang nay?">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.MaKhachHang" />
+                                            <button class="btn btn-danger small" type="submit">Xoa</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+        <div class="admin-panel form-panel sticky-panel">
+            <div class="section-head compact with-meta">
+                <div>
+                    <h2>@(string.IsNullOrWhiteSpace(Model.FormCustomer.MaKhachHang) ? "Them khach hang" : "Chinh sua khach hang")</h2>
+                    <small>@(string.IsNullOrWhiteSpace(Model.FormCustomer.MaKhachHang) ? "Tao tai khoan khach hang moi" : $"Dang sua {Model.FormCustomer.MaKhachHang}")</small>
+                </div>
+            </div>
+
+            <form asp-action="SaveCustomer" method="post" class="stack-form" data-admin-form="customers">
+                @Html.AntiForgeryToken()
+                <input name="MaKhachHang" value="@Model.FormCustomer.MaKhachHang" placeholder="Ma khach hang (de trong de tu sinh)" />
+                <input name="TenKhachHang" value="@Model.FormCustomer.TenKhachHang" placeholder="Ho ten khach hang" />
+                <div class="form-grid two">
+                    <input name="Email" value="@Model.FormCustomer.Email" placeholder="Email" />
+                    <input name="SoDienThoai" value="@Model.FormCustomer.SoDienThoai" placeholder="So dien thoai" />
+                </div>
+                <input name="MatKhau" value="@Model.FormCustomer.MatKhau" placeholder="Mat khau (de trong de giu nguyen / mac dinh 123456)" />
+                <div class="inline-actions stretch">
+                    <button class="btn btn-primary full" type="submit">Luu khach hang</button>
+                    <a asp-action="Customers" class="btn btn-outline full">Tao moi</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

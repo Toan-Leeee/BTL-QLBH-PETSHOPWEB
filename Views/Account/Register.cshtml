@@ -1,0 +1,53 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<section class="auth-shell">
+    <div class="auth-card large">
+        <h1>Đăng ký</h1>
+        <p class="auth-subtitle">Tạo tài khoản để nhận nuôi và chăm sóc thú cưng.</p>
+
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <input asp-for="FullName" placeholder="Tên đăng nhập" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+
+            <input asp-for="Email" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <input asp-for="Phone" placeholder="Số điện thoại" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+
+            <input asp-for="Password" type="password" placeholder="Mật khẩu" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <input asp-for="ConfirmPassword" type="password" placeholder="Xác nhận mật khẩu" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+            <label class="checkbox-line" for="AgreeTerms">
+                <input asp-for="AgreeTerms" />
+                <span>Tôi đồng ý với Điều khoản dịch vụ và Chính sách bảo mật</span>
+            </label>
+            <span asp-validation-for="AgreeTerms" class="text-danger"></span>
+
+            <button type="submit" class="btn btn-primary full large">ĐĂNG KÝ</button>
+        </form>
+
+        <div class="divider">HOẶC</div>
+
+        <div class="social-login">
+            <button type="button" class="btn btn-outline full">Facebook</button>
+            <button type="button" class="btn btn-outline full">Google</button>
+        </div>
+
+        <p class="auth-hint">Đã có tài khoản? <a asp-action="Login">Đăng nhập</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

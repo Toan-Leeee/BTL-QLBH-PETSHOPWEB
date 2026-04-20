@@ -1,0 +1,135 @@
+@model AdminCategoriesViewModel
+@{
+    ViewData["Title"] = "Quan ly danh muc";
+}
+<section class="admin-section">
+    <div class="admin-hero">
+        <h1>Quan ly danh muc</h1>
+        <p>Them, chinh sua va kiem soat cac nhom thu cung phu kien dang duoc ban trong he thong.</p>
+    </div>
+
+    <div class="admin-summary-strip">
+        <div class="admin-summary-card">
+            <span>Tong danh muc</span>
+            <strong>@Model.Categories.Count()</strong>
+        </div>
+        <div class="admin-summary-card">
+            <span>Danh muc dang chon</span>
+            <strong>@(Model.SelectedCategory?.MaDanhMuc ?? "--")</strong>
+        </div>
+        <div class="admin-summary-card">
+            <span>So san pham gan</span>
+            <strong>@(Model.SelectedCategory?.SanPhams.Count ?? 0)</strong>
+        </div>
+    </div>
+
+    <div class="admin-panel search-panel">
+        <form method="get" class="admin-filter-grid three-wide">
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma, ten danh muc..." />
+            <div></div>
+            <div class="inline-actions end">
+                <button class="btn btn-primary" type="submit">Tim kiem</button>
+                <a asp-action="Categories" class="btn btn-outline">Lam moi</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="admin-grid two-col admin-stretch">
+        <div class="admin-panel">
+            <div class="section-head compact with-meta">
+                <div>
+                    <h2>Danh sach danh muc</h2>
+                    <small>@Model.Categories.Count() danh muc</small>
+                </div>
+            </div>
+
+            @if (!Model.Categories.Any())
+            {
+                <div class="admin-empty-state">
+                    <h3>Chua co danh muc</h3>
+                    <p>Hay tao danh muc dau tien de gan san pham.</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-wrap compact-table">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ma DM</th>
+                                <th>Ten danh muc</th>
+                                <th>So san pham</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <tr class="@(item.MaDanhMuc == Model.SelectedId ? "row-selected" : string.Empty)">
+                                <td>@item.MaDanhMuc</td>
+                                <td>
+                                    <div class="table-title">@item.TenDanhMuc</div>
+                                    <small>@item.MoTa</small>
+                                </td>
+                                <td><span class="status-chip neutral">@item.SanPhams.Count san pham</span></td>
+                                <td>
+                                    <div class="inline-actions">
+                                        <a asp-action="Categories"
+                                           asp-route-keyword="@Model.Keyword"
+                                           asp-route-selectedId="@item.MaDanhMuc"
+                                           class="btn btn-outline small">Sua</a>
+                                        <form asp-action="DeleteCategory" method="post" class="inline-form" data-confirm="Xoa danh muc nay?">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.MaDanhMuc" />
+                                            <button class="btn btn-danger small" type="submit">Xoa</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+        <div class="admin-side-stack sticky-panel">
+            <div class="record-card" data-admin-record-card>
+                <h3>Thong tin danh muc</h3>
+                @if (Model.SelectedCategory is null)
+                {
+                    <p class="muted-note">Chon mot danh muc de xem nhanh mo ta va so san pham dang duoc gan.</p>
+                }
+                else
+                {
+                    <div class="info-pairs">
+                        <div><strong>Ten danh muc</strong>@Model.SelectedCategory.TenDanhMuc</div>
+                        <div><strong>Mo ta</strong>@(Model.SelectedCategory.MoTa ?? "Chua co mo ta")</div>
+                        <div><strong>So san pham</strong>@Model.SelectedCategory.SanPhams.Count</div>
+                    </div>
+                }
+            </div>
+
+            <div class="admin-panel form-panel">
+                <div class="section-head compact with-meta">
+                    <div>
+                        <h2>@(string.IsNullOrWhiteSpace(Model.FormCategory.MaDanhMuc) ? "Them danh muc" : "Chinh sua danh muc")</h2>
+                        <small>@(string.IsNullOrWhiteSpace(Model.FormCategory.MaDanhMuc) ? "Tao nhom san pham moi" : $"Dang sua {Model.FormCategory.MaDanhMuc}")</small>
+                    </div>
+                </div>
+
+                <form asp-action="SaveCategory" method="post" class="stack-form" data-admin-form="categories">
+                    @Html.AntiForgeryToken()
+                    <input name="MaDanhMuc" value="@Model.FormCategory.MaDanhMuc" placeholder="Ma danh muc (de trong de tu sinh)" />
+                    <input name="TenDanhMuc" value="@Model.FormCategory.TenDanhMuc" placeholder="Ten danh muc" />
+                    <textarea name="MoTa" rows="5" placeholder="Mo ta chi tiet" data-auto-resize>@Model.FormCategory.MoTa</textarea>
+                    <div class="hint">Danh muc duoc dung de nhom san pham o giao dien ban hang va admin.</div>
+                    <div class="inline-actions stretch">
+                        <button class="btn btn-primary full" type="submit">Luu danh muc</button>
+                        <a asp-action="Categories" class="btn btn-outline full">Tao moi</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

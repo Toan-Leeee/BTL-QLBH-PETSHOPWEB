@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Bao cao";
+}
+<section class="admin-section">
+    <div class="admin-hero">
+        <h1>Bao cao nhanh</h1>
+        <p>Thong ke du lieu theo dung ERD Word: nhan vien, khach hang, danh muc, san pham, don hang va phieu nhap.</p>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-card"><span>Doanh thu hoan tat</span><strong data-stat-value="@(((decimal)ViewBag.TotalRevenue).ToString("F0", System.Globalization.CultureInfo.InvariantCulture))">@(((decimal)ViewBag.TotalRevenue).ToString("N0"))</strong><small>VND</small></div>
+        <div class="stat-card"><span>Tong don hang</span><strong data-stat-value="@ViewBag.TotalOrders">@ViewBag.TotalOrders</strong><small>Don da ghi nhan</small></div>
+        <div class="stat-card"><span>San pham hien thi</span><strong data-stat-value="@ViewBag.ActiveProducts">@ViewBag.ActiveProducts</strong><small>Tren tong @ViewBag.TotalProducts san pham</small></div>
+        <div class="stat-card"><span>Tai khoan nhan vien</span><strong data-stat-value="@ViewBag.TotalEmployees">@ViewBag.TotalEmployees</strong><small>Dang hoat dong</small></div>
+        <div class="stat-card"><span>Danh muc</span><strong data-stat-value="@ViewBag.TotalCategories">@ViewBag.TotalCategories</strong><small>Nhom san pham</small></div>
+        <div class="stat-card"><span>Khach hang</span><strong data-stat-value="@ViewBag.TotalCustomers">@ViewBag.TotalCustomers</strong><small>Tai khoan da dang ky</small></div>
+        <div class="stat-card"><span>Phieu nhap</span><strong data-stat-value="@ViewBag.TotalImports">@ViewBag.TotalImports</strong><small>Lich su nhap kho</small></div>
+    </div>
+</section>

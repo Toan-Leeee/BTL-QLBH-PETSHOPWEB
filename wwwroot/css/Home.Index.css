@@ -1,0 +1,64 @@
+.hero-section {
+    padding: 8px 0 22px;
+}
+
+.hero-grid,
+.promo-banner {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 30px;
+    align-items: center;
+    background: linear-gradient(135deg, #f3e9d2 0%, #efe1bc 100%);
+    overflow: hidden;
+    padding: 36px 40px;
+}
+
+.hero-grid {
+    border-radius: 0 0 30px 30px;
+}
+
+.promo-banner {
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 45%, #f1e6cc 46%, #f1e6cc 100%);
+}
+
+.hero-art.small,
+.promo-visual {
+    max-width: 420px;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.article-card {
+    overflow: hidden;
+}
+
+.article-card img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.article-body {
+    padding: 16px 18px 20px;
+}
+
+@media (max-width: 1100px) {
+    .hero-grid,
+    .promo-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .article-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+}
