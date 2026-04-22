@@ -82,7 +82,7 @@ public class AccountController : Controller
 
         var customer = new KhachHang
         {
-            MaKhachHang = $"KH{DateTime.Now:yyyyMMddHHmmss}",
+            MaKhachHang = $"KH{DateTime.Now:yyMMddHHmmssf}",
             TenKhachHang = model.FullName,
             Email = model.Email,
             SoDienThoai = model.Phone,
@@ -92,7 +92,7 @@ public class AccountController : Controller
         _context.KhachHangs.Add(customer);
         await _context.SaveChangesAsync();
 
-        TempData["Success"] = "Tạo tài khoản thành công. Hãy đăng nhập để tiếp tục.";
+        TempData["Success"] = "Đăng ký tài khoản thành công. Hãy đăng nhập để tiếp tục.";
         return RedirectToAction(nameof(Login));
     }
 

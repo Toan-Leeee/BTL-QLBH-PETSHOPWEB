@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SieuPet</title>
+    <title>@ViewData["Title"] - SiêuPet</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="@pageCssPath" asp-append-version="true" />
 </head>
@@ -20,7 +20,7 @@
     <header class="site-header">
         <div class="container topbar">
             <a asp-controller="Home" asp-action="Index" class="brand">
-                <img src="~/images/logo.png" alt="SieuPet" />
+                <img src="~/images/logo.png" alt="SiêuPet" />
             </a>
             <nav class="main-nav">
                 <a class="@((currentController == "Home" && currentAction == "Index") ? "active" : string.Empty)" asp-controller="Home" asp-action="Index">Trang chủ</a>
@@ -80,7 +80,7 @@
                 <a asp-controller="Home" asp-action="Index">Giới Thiệu</a>
                 <a href="#footer">Liên Hệ</a>
             </nav>
-            <div class="copyright">© 2026 SieuPet. All rights reserved.</div>
+            <div class="copyright">© 2026 SiêuPet. All rights reserved.</div>
         </div>
     </footer>
 

@@ -1,29 +1,38 @@
 @model CartViewModel
 @{
-    ViewData["Title"] = "Gio hang";
+    ViewData["Title"] = "Giỏ hàng";
 }
 <section class="section section-warm">
     <div class="container page-title-block">
-        <p class="breadcrumb">Trang chu &gt; Gio hang</p>
-        <h1>Gio hang cua ban</h1>
-        <p>Kiem tra lai san pham truoc khi tien hanh tao don hang.</p>
+        <p class="breadcrumb">Trang chủ &gt; Giỏ hàng</p>
+        <h1>Giỏ hàng của bạn</h1>
+        <p>Kiểm tra lại sản phẩm trước khi tiến hành tạo đơn hàng.</p>
     </div>
 
     <div class="container cart-layout">
         <div>
+            @if (TempData["Error"] is string errorMessage)
+            {
+                <div class="form-alert error">@errorMessage</div>
+            }
+
+            @if (TempData["Success"] is string successMessage)
+            {
+                <div class="form-alert success">@successMessage</div>
+            }
             <div class="stepper">
-                <div class="step active">1 Gio hang</div>
-                <div class="step">2 Thanh toan</div>
-                <div class="step">3 Hoan tat</div>
+                <div class="step active">1 Giỏ hàng</div>
+                <div class="step">2 Thanh toán</div>
+                <div class="step">3 Hoàn tất</div>
             </div>
 
             <div class="cart-card">
                 @if (!Model.Items.Any())
                 {
                     <div class="empty-state compact">
-                        <h3>Gio hang dang trong</h3>
-                        <p>Ban chua them san pham nao vao gio hang.</p>
-                        <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Kham pha san pham</a>
+                        <h3>Giỏ hàng đang trống</h3>
+                        <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng.</p>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Khám phá sản phẩm</a>
                     </div>
                 }
                 else
@@ -38,11 +47,19 @@
                                 <span class="tag">@item.Label</span>
                                 <strong>@item.Price.ToString("N0") VND</strong>
                             </div>
-                            <form asp-action="Update" method="post" class="quantity-form">
+                            <form asp-action="Update" method="post" class="quantity-form" data-cart-quantity-form>
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="productId" value="@item.ProductId" />
-                                <input type="number" name="quantity" value="@item.Quantity" min="1" />
-                                <button type="submit" class="btn btn-outline small">Cap nhat</button>
+                                <div class="quantity-picker">
+                                    <button type="button" class="quantity-btn" data-quantity-change="-1" aria-label="Giảm số lượng">-</button>
+                                    <input type="number" name="quantity" value="@item.Quantity" min="1" max="@(item.AvailableStock > 0 ? item.AvailableStock : 9999)" readonly data-quantity-input />
+                                    <button type="button" class="quantity-btn" data-quantity-change="1" aria-label="Tăng số lượng">+</button>
+                                </div>
+                                @if (item.AvailableStock > 0)
+                                {
+                                    <span class="stock-hint" data-stock-hint>Còn @item.AvailableStock sản phẩm</span>
+                                }
+                                <button type="submit" class="quantity-submit" aria-hidden="true" tabindex="-1">Cập nhật</button>
                             </form>
                             <div class="line-total">@item.LineTotal.ToString("N0")</div>
                             <form asp-action="Remove" method="post">
@@ -58,17 +75,17 @@
 
         <aside>
             <div class="summary-card">
-                <h2>Tom tat don hang</h2>
-                <div class="summary-row"><span>Tam tinh</span><strong>@Model.SubTotal.ToString("N0")</strong></div>
-                <div class="summary-row"><span>Phi van chuyen</span><strong>@Model.ShippingFee.ToString("N0")</strong></div>
-                <div class="summary-row total"><span>Tong cong</span><strong>@Model.GrandTotal.ToString("N0")</strong></div>
+                <h2>Tóm tắt đơn hàng</h2>
+                <div class="summary-row"><span>Tạm tính</span><strong>@Model.SubTotal.ToString("N0")</strong></div>
+                <div class="summary-row"><span>Phí vận chuyển</span><strong>@Model.ShippingFee.ToString("N0")</strong></div>
+                <div class="summary-row total"><span>Tổng cộng</span><strong>@Model.GrandTotal.ToString("N0")</strong></div>
                 @if (Model.Items.Any())
                 {
-                    <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary full">Tien hanh thanh toan</a>
+                    <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary full">Tiến hành thanh toán</a>
                 }
                 else
                 {
-                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary full">Mua sam ngay</a>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary full">Mua sắm ngay</a>
                 }
             </div>
         </aside>

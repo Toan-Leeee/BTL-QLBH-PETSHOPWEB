@@ -1,44 +1,44 @@
 @model CheckoutViewModel
 @{
-    ViewData["Title"] = "Thanh toan";
+    ViewData["Title"] = "Thanh toán";
 }
 <section class="section section-warm">
     <div class="container page-title-block">
-        <p class="breadcrumb">Trang chu &gt; Gio hang &gt; Thanh toan</p>
-        <h1>Thanh toan</h1>
-        <p>Thong tin ben duoi chi dung de xac nhan dat don, du lieu don hang se luu theo dung ERD.</p>
+        <p class="breadcrumb">Trang chủ &gt; Giỏ hàng &gt; Thanh toán</p>
+        <h1>Thanh toán</h1>
+        <p>Thông tin bên dưới chỉ dùng để xác nhận đặt đơn, dữ liệu đơn hàng sẽ lưu theo đúng ERD.</p>
     </div>
 
     <div class="container cart-layout checkout-grid">
         <div>
             <div class="stepper">
-                <div class="step">1 Gio hang</div>
-                <div class="step active">2 Thanh toan</div>
-                <div class="step">3 Hoan tat</div>
+                <div class="step">1 Giỏ hàng</div>
+                <div class="step active">2 Thanh toán</div>
+                <div class="step">3 Hoàn tất</div>
             </div>
 
             <form method="post" class="checkout-form">
                 @Html.AntiForgeryToken()
                 <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
                 <div class="form-card">
-                    <h2>Thong tin lien he</h2>
+                    <h2>Thông tin liên hệ</h2>
                     <div class="form-grid two">
-                        <input asp-for="FullName" placeholder="Ho va ten" />
-                        <input asp-for="Phone" placeholder="So dien thoai" />
+                        <input asp-for="FullName" placeholder="Họ và tên" />
+                        <input asp-for="Phone" placeholder="Số điện thoại" />
                     </div>
-                    <input asp-for="Address" placeholder="Dia chi lien he" />
+                    <input asp-for="Address" placeholder="Địa chỉ liên hệ" />
                     <span asp-validation-for="FullName" class="field-validation"></span>
                     <span asp-validation-for="Phone" class="field-validation"></span>
                     <span asp-validation-for="Address" class="field-validation"></span>
                 </div>
 
-                <button class="btn btn-primary large" type="submit">Tao don hang</button>
+                <button class="btn btn-primary large" type="submit">Tạo đơn hàng</button>
             </form>
         </div>
 
         <aside>
             <div class="summary-card checkout-summary">
-                <h2>Don hang cua ban</h2>
+                <h2>Đơn hàng của bạn</h2>
                 @foreach (var item in Model.Cart.Items)
                 {
                     <div class="checkout-item">
@@ -47,9 +47,9 @@
                         <strong>@item.LineTotal.ToString("N0") VND</strong>
                     </div>
                 }
-                <div class="summary-row"><span>Tam tinh</span><strong>@Model.Cart.SubTotal.ToString("N0")</strong></div>
-                <div class="summary-row"><span>Phi van chuyen</span><strong>@Model.Cart.ShippingFee.ToString("N0")</strong></div>
-                <div class="summary-row total"><span>Tong thanh toan</span><strong>@Model.Cart.GrandTotal.ToString("N0")</strong></div>
+                <div class="summary-row"><span>Tạm tính</span><strong>@Model.Cart.SubTotal.ToString("N0")</strong></div>
+                <div class="summary-row"><span>Phí vận chuyển</span><strong>@Model.Cart.ShippingFee.ToString("N0")</strong></div>
+                <div class="summary-row total"><span>Tổng thanh toán</span><strong>@Model.Cart.GrandTotal.ToString("N0")</strong></div>
             </div>
         </aside>
     </div>

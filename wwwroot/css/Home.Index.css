@@ -27,6 +27,21 @@
     max-width: 420px;
 }
 
+.hero-banner,
+.promo-visual {
+    width: 100%;
+    max-width: 460px;
+    justify-self: center;
+}
+
+.hero-banner img,
+.promo-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
 .article-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

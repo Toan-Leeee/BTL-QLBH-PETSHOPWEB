@@ -105,6 +105,7 @@ public class SessionCartService : ICartService
                 Subtitle = product.MoTa ?? string.Empty,
                 Label = product.MaDanhMuc == "DM003" ? "Phu kien" : "Thu cung",
                 Quantity = quantity,
+                AvailableStock = product.SoLuongTonKho,
                 Price = product.GiaBan
             });
         }

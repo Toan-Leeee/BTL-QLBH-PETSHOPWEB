@@ -134,4 +134,5 @@ D:\lol\SieuPetMvc_complete\SieuPetMvc\obj\Debug\net8.0\refint\SieuPetMvc.dll
 D:\lol\SieuPetMvc_complete\SieuPetMvc\obj\Debug\net8.0\SieuPetMvc.pdb
 D:\lol\SieuPetMvc_complete\SieuPetMvc\obj\Debug\net8.0\SieuPetMvc.genruntimeconfig.cache
 D:\lol\SieuPetMvc_complete\SieuPetMvc\obj\Debug\net8.0\ref\SieuPetMvc.dll
+D:\lol\SieuPetMvc_complete\SieuPetMvc\obj\Debug\net8.0\SieuPetMvc.sourcelink.json
 D:\lol\SieuPetMvc_complete\SieuPetMvc\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

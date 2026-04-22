@@ -1,4 +1,5 @@
 wwwroot\css\Account.Login.css
+wwwroot\css\Account.Register.css
 wwwroot\css\Admin.Accounts.css
 wwwroot\css\Admin.Categories.css
 wwwroot\css\admin.css
@@ -97,4 +98,3 @@ wwwroot\js\pages\Product\Index.js
 wwwroot\js\Product.Details.js
 wwwroot\js\Product.Index.js
 wwwroot\js\site.js
-wwwroot\css\Account.Register.css

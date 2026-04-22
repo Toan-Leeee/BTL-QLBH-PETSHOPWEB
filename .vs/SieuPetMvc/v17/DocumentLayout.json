@@ -3,6 +3,34 @@
   "WorkspaceRootPath": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\sql\\qlsieupet_erd.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:sql\\qlsieupet_erd.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
@@ -23,20 +51,12 @@
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:wwwroot\\css\\account.login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\wwwroot\\js\\account.login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:wwwroot\\js\\account.login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\wwwroot\\css\\home.index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -107,10 +127,6 @@
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -125,36 +141,81 @@
     {
       "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|d:\\lol\\sieupetmvc_complete\\sieupetmvc\\sql\\qlsieupet_erd.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{B0C9D966-9B59-4B57-BCEC-4F096D0821D8}|SieuPetMvc.csproj|solutionrelative:sql\\qlsieupet_erd.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 178,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 27,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "QLSieuPet_ERD.sql ",
-              "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\SQL\\QLSieuPet_ERD.sql",
-              "RelativeDocumentMoniker": "SQL\\QLSieuPet_ERD.sql",
-              "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\SQL\\QLSieuPet_ERD.sql",
-              "RelativeToolTip": "SQL\\QLSieuPet_ERD.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-04-20T15:56:02.042Z",
+              "DocumentIndex": 1,
+              "Title": "CheckoutController.cs",
+              "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Controllers\\CheckoutController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CheckoutController.cs",
+              "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Controllers\\CheckoutController.cs",
+              "RelativeToolTip": "Controllers\\CheckoutController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAUwDIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T13:32:48.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T09:13:32.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAlwEIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T09:13:17.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Cart\\Index.cshtml",
+              "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAgwCUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-20T16:13:46.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "QLSieuPet_ERD.sql",
+              "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\SQL\\QLSieuPet_ERD.sql",
+              "RelativeDocumentMoniker": "SQL\\QLSieuPet_ERD.sql",
+              "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\SQL\\QLSieuPet_ERD.sql",
+              "RelativeToolTip": "SQL\\QLSieuPet_ERD.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-04-20T15:56:02.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
@@ -166,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Product\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Product\\Index.cshtml",
@@ -178,19 +239,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
               "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-20T12:54:13.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "Product.Details.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Product.Details.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Product.Details.css",
@@ -202,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "Admin.Reports.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Admin.Reports.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Admin.Reports.js",
@@ -214,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "Admin.Categories.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Admin.Categories.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Admin.Categories.js",
@@ -226,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Account.Register.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Account.Register.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Account.Register.js",
@@ -238,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "Account.Login.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Account.Login.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Account.Login.js",
@@ -250,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Checkout.Index.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Checkout.Index.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Checkout.Index.js",
@@ -262,7 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "Checkout.Success.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Checkout.Success.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Checkout.Success.js",
@@ -270,12 +331,11 @@
               "RelativeToolTip": "wwwroot\\js\\Checkout.Success.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-04-20T12:40:49.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T12:40:49.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Cart.Index.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\Cart.Index.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Cart.Index.js",
@@ -287,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "admin.js",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\js\\admin.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\admin.js",
@@ -299,7 +359,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "Admin.Imports.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Admin.Imports.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Admin.Imports.css",
@@ -311,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "Admin.Customers.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Admin.Customers.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Admin.Customers.css",
@@ -323,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "Account.Register.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Account.Register.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Account.Register.css",
@@ -331,12 +391,11 @@
               "RelativeToolTip": "wwwroot\\css\\Account.Register.css",
               "ViewState": "AgIAAKMAAAAAAAAAAAAowKsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-20T12:35:00.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T12:35:00.092Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "Account.Login.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Account.Login.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Account.Login.css",
@@ -348,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "Admin.Categories.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Admin.Categories.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Admin.Categories.css",
@@ -360,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "Admin.Accounts.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Admin.Accounts.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Admin.Accounts.css",
@@ -372,7 +431,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "Cart.Index.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Cart.Index.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Cart.Index.css",
@@ -384,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "Checkout.Index.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Checkout.Index.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Checkout.Index.css",
@@ -396,7 +455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "Checkout.Success.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Checkout.Success.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Checkout.Success.css",
@@ -408,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Home.Index.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\Home.Index.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Home.Index.css",
@@ -420,19 +479,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 0,
               "Title": "CartController.cs",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "Controllers\\CartController.cs",
               "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Controllers\\CartController.cs",
               "RelativeToolTip": "Controllers\\CartController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAcwCoAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAUwD8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T11:38:48.185Z"
+              "WhenOpened": "2026-04-20T11:38:48.185Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 31,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -444,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "site.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
@@ -456,7 +516,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "admin.css",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\wwwroot\\css\\admin.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\admin.css",
@@ -468,19 +528,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
               "ToolTip": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\Account\\Login.cshtml",
               "RelativeToolTip": "Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAA0AAAAAAAAAAADwvy8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-20T10:04:51.775Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 33,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
@@ -492,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 34,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
@@ -504,7 +564,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 32,
               "Title": "AdminAccountsViewModel.cs",
               "DocumentMoniker": "D:\\lol\\SieuPetMvc_complete\\SieuPetMvc\\ViewModels\\AdminAccountsViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AdminAccountsViewModel.cs",

@@ -1,38 +1,38 @@
 @model AdminProductsViewModel
 @{
-    ViewData["Title"] = "Quan ly san pham";
+    ViewData["Title"] = "Quản lý sản phẩm";
 }
 <section class="admin-section">
     <div class="admin-hero">
-        <h1>Quan ly san pham</h1>
-        <p>Them, sua va xoa truc tiep san pham trong database.</p>
+        <h1>Quản lý sản phẩm</h1>
+        <p>Thêm, sửa và xóa trực tiếp sản phẩm trong cơ sở dữ liệu.</p>
     </div>
 
     <div class="admin-panel search-panel">
         <form method="get" class="admin-filter-grid three-wide">
-            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ten, ma SKU..." />
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tìm theo tên, mã SKU..." />
             <select name="statusFilter">
-                <option value="">Tat ca trang thai</option>
+                <option value="">Tất cả trạng thái</option>
                 @if (Model.StatusFilter == "active")
                 {
-                    <option value="active" selected>Dang hien thi</option>
+                    <option value="active" selected>Đang hiển thị</option>
                 }
                 else
                 {
-                    <option value="active">Dang hien thi</option>
+                    <option value="active">Đang hiển thị</option>
                 }
                 @if (Model.StatusFilter == "hidden")
                 {
-                    <option value="hidden" selected>Dang an</option>
+                    <option value="hidden" selected>Đang ẩn</option>
                 }
                 else
                 {
-                    <option value="hidden">Dang an</option>
+                    <option value="hidden">Đang ẩn</option>
                 }
             </select>
             <div class="inline-actions end">
-                <button class="btn btn-primary" type="submit">Tim kiem</button>
-                <a asp-action="Products" class="btn btn-outline">Lam moi</a>
+                <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                <a asp-action="Products" class="btn btn-outline">Làm mới</a>
             </div>
         </form>
     </div>
@@ -41,16 +41,16 @@
         <div class="admin-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>Danh sach san pham</h2>
-                    <small>@Model.Products.Count() san pham / phu kien</small>
+                    <h2>Danh sách sản phẩm</h2>
+                    <small>@Model.Products.Count() sản phẩm / phụ kiện</small>
                 </div>
             </div>
 
             @if (!Model.Products.Any())
             {
                 <div class="admin-empty-state">
-                    <h3>Chua co du lieu phu hop</h3>
-                    <p>Hay them san pham moi hoac thay doi bo loc tim kiem.</p>
+                    <h3>Chưa có dữ liệu phù hợp</h3>
+                    <p>Hãy thêm sản phẩm mới hoặc thay đổi bộ lọc tìm kiếm.</p>
                 </div>
             }
             else
@@ -60,12 +60,12 @@
                         <thead>
                             <tr>
                                 <th>SKU</th>
-                                <th>Ten san pham</th>
-                                <th>Danh muc</th>
-                                <th>Gia</th>
-                                <th>Ton</th>
-                                <th>Trang thai</th>
-                                <th>Hanh dong</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Danh mục</th>
+                                <th>Giá</th>
+                                <th>Tồn</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,7 +82,7 @@
                                 <td>@item.SoLuongTonKho</td>
                                 <td>
                                     <span class="status-chip @(item.TrangThai ? "success" : "danger")">
-                                        @(item.TrangThai ? "Dang hien thi" : "Da an")
+                                        @(item.TrangThai ? "Đang hiển thị" : "Đã ẩn")
                                     </span>
                                 </td>
                                 <td>
@@ -91,12 +91,12 @@
                                            asp-route-keyword="@Model.Keyword"
                                            asp-route-statusFilter="@Model.StatusFilter"
                                            asp-route-selectedId="@item.MaSanPham"
-                                           class="btn btn-outline small">Sua</a>
+                                           class="btn btn-outline small">Sửa</a>
 
-                                        <form asp-action="DeleteProduct" method="post" class="inline-form" data-confirm="Xoa san pham nay khoi database?">
+                                        <form asp-action="DeleteProduct" method="post" class="inline-form" data-confirm="Xóa sản phẩm này khỏi cơ sở dữ liệu?">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@item.MaSanPham" />
-                                            <button class="btn btn-danger small" type="submit">Xoa</button>
+                                            <button class="btn btn-danger small" type="submit">Xóa</button>
                                         </form>
                                     </div>
                                 </td>
@@ -111,15 +111,15 @@
         <div class="admin-panel form-panel products-form-panel sticky-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>@(string.IsNullOrWhiteSpace(Model.FormProduct.MaSanPham) ? "Them san pham moi" : "Chinh sua san pham")</h2>
-                    <small>@(string.IsNullOrWhiteSpace(Model.FormProduct.MaSanPham) ? "Tao san pham moi trong he thong" : $"Dang chinh sua {Model.FormProduct.MaSanPham}")</small>
+                    <h2>@(string.IsNullOrWhiteSpace(Model.FormProduct.MaSanPham) ? "Thêm sản phẩm mới" : "Chỉnh sửa sản phẩm")</h2>
+                    <small>@(string.IsNullOrWhiteSpace(Model.FormProduct.MaSanPham) ? "Tạo sản phẩm mới trong hệ thống" : $"Đang chỉnh sửa {Model.FormProduct.MaSanPham}")</small>
                 </div>
             </div>
 
             <form asp-action="SaveProduct" method="post" class="stack-form" data-admin-form="products">
                 @Html.AntiForgeryToken()
-                <input name="MaSanPham" value="@Model.FormProduct.MaSanPham" placeholder="Ma san pham (de trong de tu sinh)" />
-                <input name="TenSanPham" value="@Model.FormProduct.TenSanPham" placeholder="Ten thu cung / san pham" />
+                <input name="MaSanPham" value="@Model.FormProduct.MaSanPham" placeholder="Mã sản phẩm (để trống để tự sinh)" />
+                <input name="TenSanPham" value="@Model.FormProduct.TenSanPham" placeholder="Tên thú cưng / sản phẩm" />
 
                 <select name="MaDanhMuc">
                     @foreach (var category in Model.Categories)
@@ -136,21 +136,21 @@
                 </select>
 
                 <div class="form-grid two">
-                    <input name="GiaBan" type="number" min="0" step="1000" value="@Model.FormProduct.GiaBan" placeholder="Gia ban" />
-                    <input name="SoLuongTonKho" type="number" min="0" value="@Model.FormProduct.SoLuongTonKho" placeholder="So luong ton" />
+                    <input name="GiaBan" type="number" min="0" step="1000" value="@Model.FormProduct.GiaBan" placeholder="Giá bán" />
+                    <input name="SoLuongTonKho" type="number" min="0" value="@Model.FormProduct.SoLuongTonKho" placeholder="Số lượng tồn" />
                 </div>
 
                 <input name="HinhAnh"
                        value="@Model.FormProduct.HinhAnh"
-                       placeholder="Duong dan anh, vi du /images/products/default.svg"
+                       placeholder="Đường dẫn ảnh, ví dụ /images/products/default.svg"
                        data-product-image-input />
                 <div class="admin-image-preview">
                     <img src="@(string.IsNullOrWhiteSpace(Model.FormProduct.HinhAnh) ? "/images/products/default.svg" : Model.FormProduct.HinhAnh)"
-                         alt="Anh san pham"
+                         alt="Ảnh sản phẩm"
                          data-product-image-preview />
-                    <small>Xem truoc anh dang gan cho san pham.</small>
+                    <small>Xem trước ảnh đang gắn cho sản phẩm.</small>
                 </div>
-                <textarea name="MoTa" rows="4" placeholder="Mo ta">@Model.FormProduct.MoTa</textarea>
+                <textarea name="MoTa" rows="4" placeholder="Mô tả">@Model.FormProduct.MoTa</textarea>
 
                 <label class="checkbox-line no-border">
                     @if (Model.FormProduct.TrangThai)
@@ -162,12 +162,12 @@
                         <input type="checkbox" name="TrangThai" value="true" />
                     }
                     <input type="hidden" name="TrangThai" value="false" />
-                    <span>Hien thi san pham tren giao dien ban hang</span>
+                    <span>Hiển thị sản phẩm trên giao diện bán hàng</span>
                 </label>
 
                 <div class="inline-actions stretch">
-                    <button class="btn btn-primary full" type="submit">Luu san pham</button>
-                    <a asp-action="Products" class="btn btn-outline full">Tao moi</a>
+                    <button class="btn btn-primary full" type="submit">Lưu sản phẩm</button>
+                    <a asp-action="Products" class="btn btn-outline full">Tạo mới</a>
                 </div>
             </form>
         </div>

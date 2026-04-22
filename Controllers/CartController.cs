@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SieuPetMvc.Data;
 using SieuPetMvc.Services;
 
 namespace SieuPetMvc.Controllers;
@@ -6,10 +8,12 @@ namespace SieuPetMvc.Controllers;
 public class CartController : Controller
 {
     private readonly ICartService _cartService;
+    private readonly ApplicationDbContext _context;
 
-    public CartController(ICartService cartService)
+    public CartController(ICartService cartService, ApplicationDbContext context)
     {
         _cartService = cartService;
+        _context = context;
     }
 
     public async Task<IActionResult> Index()
@@ -46,6 +50,12 @@ public class CartController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update(string productId, int quantity)
     {
+        var product = await _context.SanPhams.AsNoTracking().FirstOrDefaultAsync(x => x.MaSanPham == productId);
+        if (product is not null && product.SoLuongTonKho > 0 && quantity > product.SoLuongTonKho)
+        {
+            TempData["Error"] = $"Sản phẩm này chỉ còn {product.SoLuongTonKho} item trong kho.";
+        }
+
         await _cartService.UpdateAsync(productId, quantity);
         return RedirectToAction(nameof(Index));
     }

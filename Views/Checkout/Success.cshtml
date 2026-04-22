@@ -1,35 +1,35 @@
 @model OrderSuccessViewModel
 @{
-    ViewData["Title"] = "Dat don thanh cong";
+    ViewData["Title"] = "Đặt đơn thành công";
 }
 <section class="section section-warm">
     <div class="container page-title-block">
-        <p class="breadcrumb">Trang chu &gt; Gio hang &gt; Thanh toan &gt; Hoan tat</p>
-        <h1>Dat don thanh cong</h1>
-        <p>Don hang cua ban da duoc ghi nhan trong he thong.</p>
+        <p class="breadcrumb">Trang chủ &gt; Giỏ hàng &gt; Thanh toán &gt; Hoàn tất</p>
+        <h1>Đặt đơn thành công</h1>
+        <p>Đơn hàng của bạn đã được ghi nhận trong hệ thống.</p>
     </div>
 
     <div class="container cart-layout success-grid">
         <div>
             <div class="stepper">
-                <div class="step">1 Gio hang</div>
-                <div class="step">2 Thanh toan</div>
-                <div class="step active">3 Hoan tat</div>
+                <div class="step">1 Giỏ hàng</div>
+                <div class="step">2 Thanh toán</div>
+                <div class="step active">3 Hoàn tất</div>
             </div>
             <div class="success-card">
                 <div class="success-icon">OK</div>
-                <h2>Dat don thanh cong</h2>
-                <p>He thong da tao don hang theo mo hinh ERD va cap nhat chi tiet don hang tu gio hang cua ban.</p>
+                <h2>Đặt đơn thành công</h2>
+                <p>Hệ thống đã tạo đơn hàng theo mô hình ERD và cập nhật chi tiết đơn hàng từ giỏ hàng của bạn.</p>
                 <div class="hero-actions">
-                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Tiep tuc mua sam</a>
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline">Ve trang chu</a>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Tiếp tục mua sắm</a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline">Về trang chủ</a>
                 </div>
             </div>
         </div>
         <aside>
             <div class="summary-card">
-                <h2>Thong tin don hang</h2>
-                <div class="order-code">Ma don hang <strong>@Model.Order.MaDonHang</strong></div>
+                <h2>Thông tin đơn hàng</h2>
+                <div class="order-code">Mã đơn hàng <strong>@Model.Order.MaDonHang</strong></div>
                 @foreach (var item in Model.Items)
                 {
                     <div class="checkout-item compact">
@@ -37,7 +37,7 @@
                         <p>@item.Quantity x @item.Price.ToString("N0")</p>
                     </div>
                 }
-                <div class="summary-row total"><span>Tong thanh toan</span><strong>@Model.Order.TongTien.ToString("N0")</strong></div>
+                <div class="summary-row total"><span>Tổng thanh toán</span><strong>@Model.Order.TongTien.ToString("N0")</strong></div>
             </div>
         </aside>
     </div>
