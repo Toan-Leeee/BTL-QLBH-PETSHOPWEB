@@ -5,7 +5,7 @@
 <section class="admin-section">
     <div class="admin-hero">
         <h1>Quản lý sản phẩm</h1>
-        <p>Thêm, sửa và xóa trực tiếp sản phẩm trong cơ sở dữ liệu.</p>
+        <p>Thêm, sửa và xóa sản phẩm khỏi giao diện bán hàng, không xóa bản ghi khỏi cơ sở dữ liệu.</p>
     </div>
 
     <div class="admin-panel search-panel">
@@ -93,7 +93,7 @@
                                            asp-route-selectedId="@item.MaSanPham"
                                            class="btn btn-outline small">Sửa</a>
 
-                                        <form asp-action="DeleteProduct" method="post" class="inline-form" data-confirm="Xóa sản phẩm này khỏi cơ sở dữ liệu?">
+                                        <form asp-action="DeleteProduct" method="post" class="inline-form" data-confirm="Xóa sản phẩm này khỏi giao diện bán hàng? Bản ghi vẫn được giữ trong database.">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@item.MaSanPham" />
                                             <button class="btn btn-danger small" type="submit">Xóa</button>

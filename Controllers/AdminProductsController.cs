@@ -129,11 +129,10 @@ public class AdminProductsController : AdminBaseController
         var product = await Context.SanPhams.FirstOrDefaultAsync(x => x.MaSanPham == id);
         if (product is null) return RedirectToAction(nameof(Products));
 
-        product.DaXoa = true;
         product.TrangThai = false;
 
         await Context.SaveChangesAsync();
-        TempData["Success"] = "Da an san pham khoi danh sach hien thi.";
+        TempData["Success"] = "Da an san pham. Ban ghi van duoc giu trong database.";
         return RedirectToAction(nameof(Products));
     }
 
