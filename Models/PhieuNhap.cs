@@ -21,6 +21,9 @@ public class PhieuNhap
     [Column("sNhaCungCap")]
     public string? NhaCungCap { get; set; }
 
+    [Column("bDaXoa")]
+    public bool DaXoa { get; set; }
+
     public NhanVien? NhanVien { get; set; }
     public ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; } = new List<ChiTietPhieuNhap>();
 }

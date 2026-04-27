@@ -1,58 +1,165 @@
 @model CheckoutViewModel
 @{
     ViewData["Title"] = "Thanh toán";
+    var petItems = Model.Cart.Items.Where(x => x.Label != "Phu kien").ToList();
+    var accessoryItems = Model.Cart.Items.Where(x => x.Label == "Phu kien").ToList();
+    var accessoryTotal = accessoryItems.Sum(x => x.LineTotal);
 }
-<section class="section section-warm">
-    <div class="container page-title-block">
+
+<section class="section section-warm checkout-page-section">
+    <div class="container checkout-topbar">
+        <a asp-controller="Home" asp-action="Index" class="brand">
+            <img src="~/images/logo.png" alt="SiêuPet" />
+        </a>
+        <a asp-controller="Home" asp-action="Index" class="btn checkout-exit">Thoát</a>
+    </div>
+
+    <div class="container checkout-heading">
         <p class="breadcrumb">Trang chủ &gt; Giỏ hàng &gt; Thanh toán</p>
         <h1>Thanh toán</h1>
-        <p>Thông tin bên dưới chỉ dùng để xác nhận đặt đơn, dữ liệu đơn hàng sẽ lưu theo đúng ERD.</p>
+        <p>Hoàn tất thông tin giao nhận và phương thức thanh toán để đặt lịch nhận nuôi.</p>
     </div>
 
-    <div class="container cart-layout checkout-grid">
-        <div>
-            <div class="stepper">
-                <div class="step">1 Giỏ hàng</div>
-                <div class="step active">2 Thanh toán</div>
-                <div class="step">3 Hoàn tất</div>
-            </div>
+    <form method="post" class="container checkout-shell">
+        @Html.AntiForgeryToken()
 
-            <form method="post" class="checkout-form">
-                @Html.AntiForgeryToken()
-                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
-                <div class="form-card">
-                    <h2>Thông tin liên hệ</h2>
-                    <div class="form-grid two">
-                        <input asp-for="FullName" placeholder="Họ và tên" />
-                        <input asp-for="Phone" placeholder="Số điện thoại" />
+        <div class="checkout-main checkout-main-designed">
+            <div class="checkout-content">
+                <div class="checkout-stepper">
+                    <div class="step-item done">
+                        <span class="step-index">1</span>
+                        <span>Giỏ hàng</span>
                     </div>
-                    <input asp-for="Address" placeholder="Địa chỉ liên hệ" />
-                    <span asp-validation-for="FullName" class="field-validation"></span>
-                    <span asp-validation-for="Phone" class="field-validation"></span>
-                    <span asp-validation-for="Address" class="field-validation"></span>
+                    <span class="step-line"></span>
+                    <div class="step-item active">
+                        <span class="step-index">2</span>
+                        <span>Thanh toán</span>
+                    </div>
+                    <span class="step-line"></span>
+                    <div class="step-item">
+                        <span class="step-index">3</span>
+                        <span>Hoàn tất</span>
+                    </div>
                 </div>
 
-                <button class="btn btn-primary large" type="submit">Tạo đơn hàng</button>
-            </form>
-        </div>
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
 
-        <aside>
-            <div class="summary-card checkout-summary">
-                <h2>Đơn hàng của bạn</h2>
-                @foreach (var item in Model.Cart.Items)
-                {
-                    <div class="checkout-item">
-                        <h3>@item.Name</h3>
-                        <p>@item.Subtitle</p>
-                        <strong>@item.LineTotal.ToString("N0") VND</strong>
+                <section class="checkout-panel panel-spacious">
+                    <h2>Thông tin nhận hàng</h2>
+                    <div class="checkout-form-grid">
+                        <div class="field-block">
+                            <input asp-for="FullName" placeholder="Họ và tên" />
+                            <span asp-validation-for="FullName" class="field-validation"></span>
+                        </div>
+                        <div class="field-block">
+                            <input asp-for="Phone" placeholder="Số điện thoại" />
+                            <span asp-validation-for="Phone" class="field-validation"></span>
+                        </div>
+                        <div class="field-block full">
+                            <input asp-for="Address" placeholder="Địa chỉ nhận nuôi / giao hàng" />
+                            <span asp-validation-for="Address" class="field-validation"></span>
+                        </div>
                     </div>
-                }
-                <div class="summary-row"><span>Tạm tính</span><strong>@Model.Cart.SubTotal.ToString("N0")</strong></div>
-                <div class="summary-row"><span>Phí vận chuyển</span><strong>@Model.Cart.ShippingFee.ToString("N0")</strong></div>
-                <div class="summary-row total"><span>Tổng thanh toán</span><strong>@Model.Cart.GrandTotal.ToString("N0")</strong></div>
+                </section>
+
+                <section class="checkout-panel panel-spacious">
+                    <h2>Phương thức vận chuyển</h2>
+                    <div class="delivery-options">
+                        <label class="delivery-card selected" data-delivery-card>
+                            <input type="radio" name="shippingMethod" value="store" checked />
+                            <strong>Nhận nuôi tại cửa hàng</strong>
+                            <span>Đặt lịch đến cửa hàng • Miễn phí</span>
+                        </label>
+                        <label class="delivery-card" data-delivery-card>
+                            <input type="radio" name="shippingMethod" value="delivery" />
+                            <strong>Giao phụ kiện tận nơi</strong>
+                            <span>Dự kiến 1 - 2 ngày • 0 VND</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="checkout-panel panel-spacious">
+                    <h2>Phương thức thanh toán</h2>
+                    <div class="payment-options">
+                        <label class="payment-option checked" data-payment-option>
+                            <input type="radio" name="paymentMethod" value="cod" checked />
+                            <span class="radio-dot"></span>
+                            <strong>Thanh toán khi nhận hàng / xác nhận lịch hẹn</strong>
+                        </label>
+                        <label class="payment-option highlight" data-payment-option>
+                            <input type="radio" name="paymentMethod" value="banking" />
+                            <span class="radio-dot"></span>
+                            <strong>Chuyển khoản ngân hàng</strong>
+                        </label>
+                        <label class="payment-option" data-payment-option>
+                            <input type="radio" name="paymentMethod" value="wallet" />
+                            <span class="radio-dot"></span>
+                            <strong>Ví điện tử</strong>
+                        </label>
+                    </div>
+                </section>
             </div>
-        </aside>
-    </div>
+
+            <aside class="checkout-sidebar">
+                <section class="summary-card checkout-summary design-summary">
+                    <h2>Đơn hàng của bạn</h2>
+
+                    @foreach (var item in petItems)
+                    {
+                        <article class="summary-item-card">
+                            <img src="@item.ImageUrl" alt="@item.Name" />
+                            <div>
+                                <h3>@item.Name</h3>
+                                <p>@item.Subtitle</p>
+                                <strong>@item.LineTotal.ToString("N0") VND</strong>
+                            </div>
+                        </article>
+                    }
+
+                    @if (accessoryItems.Any())
+                    {
+                        <article class="summary-item-card accessory">
+                            <div>
+                                <h3>Phụ kiện đi kèm</h3>
+                                <p>@string.Join(" • ", accessoryItems.Select(x => x.Name))</p>
+                                <strong>@accessoryTotal.ToString("N0") VND</strong>
+                            </div>
+                        </article>
+                    }
+
+                    <div class="summary-block">
+                        <div class="summary-row">
+                            <span>Tạm tính</span>
+                            <strong>@Model.Cart.SubTotal.ToString("N0")</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển</span>
+                            <strong>@Model.Cart.ShippingFee.ToString("N0")</strong>
+                        </div>
+                        <div class="summary-row discount">
+                            <span>Giảm giá</span>
+                            <strong>0</strong>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Tổng thanh toán</span>
+                            <strong>@Model.Cart.GrandTotal.ToString("N0")</strong>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary full checkout-submit" type="submit">Đặt đơn ngay</button>
+                    <div class="checkout-commitment">✓ Hỗ trợ tư vấn trước và sau khi nhận nuôi</div>
+                </section>
+
+                <section class="checkout-help-card">
+                    <h3>Bạn cần chỉnh sửa đơn?</h3>
+                    <div class="checkout-help-actions">
+                        <a asp-controller="Cart" asp-action="Index" class="btn btn-accent">Quay lại giỏ</a>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline light">Tiếp tục mua</a>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </form>
 </section>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

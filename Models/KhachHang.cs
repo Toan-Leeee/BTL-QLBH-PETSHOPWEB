@@ -26,5 +26,8 @@ public class KhachHang
     [Column("sMatKhau")]
     public string MatKhau { get; set; } = string.Empty;
 
+    [Column("bDaXoa")]
+    public bool DaXoa { get; set; }
+
     public ICollection<DonHang> DonHangs { get; set; } = new List<DonHang>();
 }

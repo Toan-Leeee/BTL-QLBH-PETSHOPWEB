@@ -17,7 +17,6 @@ public class ApplicationDbContext : DbContext
     public DbSet<ChiTietDonHang> ChiTietDonHangs => Set<ChiTietDonHang>();
     public DbSet<PhieuNhap> PhieuNhaps => Set<PhieuNhap>();
     public DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps => Set<ChiTietPhieuNhap>();
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -56,6 +55,24 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<NhanVien>()
             .HasIndex(x => x.Email)
             .IsUnique();
+
+        modelBuilder.Entity<SanPham>()
+            .HasQueryFilter(x => !x.DaXoa);
+
+        modelBuilder.Entity<DanhMuc>()
+            .HasQueryFilter(x => !x.DaXoa);
+
+        modelBuilder.Entity<KhachHang>()
+            .HasQueryFilter(x => !x.DaXoa);
+
+        modelBuilder.Entity<NhanVien>()
+            .HasQueryFilter(x => !x.DaXoa);
+
+        modelBuilder.Entity<DonHang>()
+            .HasQueryFilter(x => !x.DaXoa);
+
+        modelBuilder.Entity<PhieuNhap>()
+            .HasQueryFilter(x => !x.DaXoa);
 
         modelBuilder.Entity<SanPham>()
             .HasOne(x => x.DanhMuc)

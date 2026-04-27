@@ -1,21 +1,21 @@
 @model AdminAccountsViewModel
 @{
-    ViewData["Title"] = "Quan ly tai khoan";
+    ViewData["Title"] = "Quản lý tài khoản";
 }
 <section class="admin-section">
     <div class="admin-hero">
-        <h1>Quan ly tai khoan</h1>
-        <p>Quan tri tai khoan admin va nhan vien, cho phep them sua xoa truc tiep trong database.</p>
+        <h1>Quản lý tài khoản</h1>
+        <p>Quản trị tài khoản admin và nhân viên, cho phép thêm, sửa, xóa trực tiếp trong cơ sở dữ liệu.</p>
     </div>
 
     <div class="admin-panel search-panel">
         <form method="get" class="admin-filter-grid three-wide">
-            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ten, email, so dien thoai hoac vai tro..." />
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tìm theo tên, email, số điện thoại hoặc vai trò..." />
             <input type="hidden" name="selectedId" value="@Model.SelectedId" />
             <div></div>
             <div class="inline-actions end">
-                <button class="btn btn-primary" type="submit">Tim kiem</button>
-                <a asp-action="Accounts" class="btn btn-outline">Lam moi</a>
+                <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                <a asp-action="Accounts" class="btn btn-outline">Làm mới</a>
             </div>
         </form>
     </div>
@@ -24,16 +24,16 @@
         <div class="admin-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>Danh sach tai khoan</h2>
-                    <small>@Model.Employees.Count() nhan su dang hoat dong</small>
+                    <h2>Danh sách tài khoản</h2>
+                    <small>@Model.Employees.Count() nhân sự đang hoạt động</small>
                 </div>
             </div>
 
             @if (!Model.Employees.Any())
             {
                 <div class="admin-empty-state">
-                    <h3>Khong tim thay tai khoan phu hop</h3>
-                    <p>Hay dieu chinh tu khoa tim kiem hoac tao moi mot tai khoan nhan vien.</p>
+                    <h3>Không tìm thấy tài khoản phù hợp</h3>
+                    <p>Hãy điều chỉnh từ khóa tìm kiếm hoặc tạo mới một tài khoản nhân viên.</p>
                 </div>
             }
             else
@@ -42,10 +42,10 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>Ho ten</th>
+                                <th>Họ tên</th>
                                 <th>Email</th>
-                                <th>So dien thoai</th>
-                                <th>Vai tro</th>
+                                <th>Số điện thoại</th>
+                                <th>Vai trò</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -62,11 +62,11 @@
                                         <a asp-action="Accounts"
                                            asp-route-keyword="@Model.Keyword"
                                            asp-route-selectedId="@item.MaNhanVien"
-                                           class="btn btn-outline small">Sua</a>
-                                        <form asp-action="DeleteEmployee" method="post" class="inline-form" data-confirm="Xoa tai khoan nay khoi database?">
+                                           class="btn btn-outline small">Sửa</a>
+                                        <form asp-action="DeleteEmployee" method="post" class="inline-form" data-confirm="Xóa tài khoản này khỏi cơ sở dữ liệu?">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@item.MaNhanVien" />
-                                            <button class="btn btn-danger small" type="submit">Xoa</button>
+                                            <button class="btn btn-danger small" type="submit">Xóa</button>
                                         </form>
                                     </div>
                                 </td>
@@ -80,11 +80,11 @@
 
         <div class="admin-side-stack sticky-panel">
             <div class="admin-panel profile-card-admin" data-admin-profile-card>
-                <h2>Chi tiet quyen</h2>
+                <h2>Chi tiết quyền</h2>
                 @if (Model.SelectedEmployee is null)
                 {
                     <div class="admin-empty-state compact">
-                        <p>Chon mot tai khoan o danh sach ben trai de xem chi tiet.</p>
+                        <p>Chọn một tài khoản ở danh sách bên trái để xem chi tiết.</p>
                     </div>
                 }
                 else
@@ -99,25 +99,25 @@
             <div class="admin-panel form-panel">
                 <div class="section-head compact with-meta">
                     <div>
-                        <h2>@(string.IsNullOrWhiteSpace(Model.FormEmployee.MaNhanVien) ? "Tao tai khoan moi" : "Chinh sua tai khoan")</h2>
-                        <small>@(string.IsNullOrWhiteSpace(Model.FormEmployee.MaNhanVien) ? "Them nhan su moi vao he thong" : $"Ma nhan vien: {Model.FormEmployee.MaNhanVien}")</small>
+                        <h2>@(string.IsNullOrWhiteSpace(Model.FormEmployee.MaNhanVien) ? "Tạo tài khoản mới" : "Chỉnh sửa tài khoản")</h2>
+                        <small>@(string.IsNullOrWhiteSpace(Model.FormEmployee.MaNhanVien) ? "Thêm nhân sự mới vào hệ thống" : $"Mã nhân viên: {Model.FormEmployee.MaNhanVien}")</small>
                     </div>
                 </div>
 
                 <form asp-action="SaveEmployee" method="post" class="stack-form" data-admin-form="accounts">
                     @Html.AntiForgeryToken()
-                    <input name="MaNhanVien" value="@Model.FormEmployee.MaNhanVien" placeholder="Ma nhan vien (de trong de tu sinh)" />
-                    <input name="HoTen" value="@Model.FormEmployee.HoTen" placeholder="Ho va ten" />
-                    <input name="Email" value="@Model.FormEmployee.Email" placeholder="Email dang nhap" />
-                    <input name="SoDienThoai" value="@Model.FormEmployee.SoDienThoai" placeholder="So dien thoai" />
+                    <input name="MaNhanVien" value="@Model.FormEmployee.MaNhanVien" placeholder="Mã nhân viên (để trống để tự sinh)" />
+                    <input name="HoTen" value="@Model.FormEmployee.HoTen" placeholder="Họ và tên" />
+                    <input name="Email" value="@Model.FormEmployee.Email" placeholder="Email đăng nhập" />
+                    <input name="SoDienThoai" value="@Model.FormEmployee.SoDienThoai" placeholder="Số điện thoại" />
                     <div class="form-grid two">
-                        <input name="VaiTro" value="@Model.FormEmployee.VaiTro" placeholder="Vai tro / phong ban" />
+                        <input name="VaiTro" value="@Model.FormEmployee.VaiTro" placeholder="Vai trò / phòng ban" />
                         <input name="NgayVaoLam" type="date" value="@Model.FormEmployee.NgayVaoLam?.ToString("yyyy-MM-dd")" />
                     </div>
-                    <input name="MatKhau" value="@Model.FormEmployee.MatKhau" placeholder="Mat khau (de trong neu giu nguyen)" />
+                    <input name="MatKhau" value="@Model.FormEmployee.MatKhau" placeholder="Mật khẩu (để trống nếu giữ nguyên)" />
                     <div class="inline-actions stretch">
-                        <button class="btn btn-primary full" type="submit">Luu tai khoan</button>
-                        <a asp-action="Accounts" class="btn btn-outline full">Tao moi</a>
+                        <button class="btn btn-primary full" type="submit">Lưu tài khoản</button>
+                        <a asp-action="Accounts" class="btn btn-outline full">Tạo mới</a>
                     </div>
                 </form>
             </div>

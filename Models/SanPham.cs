@@ -34,6 +34,9 @@ public class SanPham
     [Column("bTrangThai")]
     public bool TrangThai { get; set; } = true;
 
+    [Column("bDaXoa")]
+    public bool DaXoa { get; set; }
+
     public DanhMuc? DanhMuc { get; set; }
     public ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();
     public ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; } = new List<ChiTietPhieuNhap>();

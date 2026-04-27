@@ -18,5 +18,8 @@ public class DanhMuc
     [Column("sMoTa")]
     public string? MoTa { get; set; }
 
+    [Column("bDaXoa")]
+    public bool DaXoa { get; set; }
+
     public ICollection<SanPham> SanPhams { get; set; } = new List<SanPham>();
 }

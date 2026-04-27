@@ -36,20 +36,20 @@ public static class SeedData
             new SanPham { MaSanPham = "SP004", MaDanhMuc = "DM002", TenSanPham = "M0512 - Alaskan Malamute", GiaBan = 8900000, SoLuongTonKho = 1, MoTa = "Giong duc, 03 thang, mau xam trang", HinhAnh = "/images/products/alaskan.svg", TrangThai = true },
             new SanPham { MaSanPham = "SP005", MaDanhMuc = "DM002", TenSanPham = "M0128 - Pembroke Corgi", GiaBan = 7900000, SoLuongTonKho = 1, MoTa = "Giong duc, 02 thang, chan ngan", HinhAnh = "/images/products/corgi.svg", TrangThai = true },
             new SanPham { MaSanPham = "SP006", MaDanhMuc = "DM002", TenSanPham = "#1000078 - Shiba Inu Nau Do", GiaBan = 12000000, SoLuongTonKho = 1, MoTa = "Giong cai, 2 thang, nau do", HinhAnh = "/images/products/shiba.svg", TrangThai = true },
-            new SanPham { MaSanPham = "PK001", MaDanhMuc = "DM003", TenSanPham = "Bat an chong truot", GiaBan = 320000, SoLuongTonKho = 18, MoTa = "Bat an cho thu cung", HinhAnh = "/images/products/bowl.svg", TrangThai = true },
-            new SanPham { MaSanPham = "PK002", MaDanhMuc = "DM003", TenSanPham = "Day dat di dao", GiaBan = 180000, SoLuongTonKho = 25, MoTa = "Size M, mau navy", HinhAnh = "/images/products/leash.svg", TrangThai = true }
+            new SanPham { MaSanPham = "PK001", MaDanhMuc = "DM003", TenSanPham = "Bat an chong truot", GiaBan = 320000, SoLuongTonKho = 18, MoTa = "Bat an cho thu cung", HinhAnh = "/images/products/Frame 7.png", TrangThai = true },
+            new SanPham { MaSanPham = "PK002", MaDanhMuc = "DM003", TenSanPham = "Day dat di dao", GiaBan = 180000, SoLuongTonKho = 25, MoTa = "Size M, mau navy", HinhAnh = "/images/products/image 6.jpg", TrangThai = true }
         );
 
         context.NhanViens.AddRange(
-            new NhanVien { MaNhanVien = "NV001", HoTen = "Le Xuan Toan", SoDienThoai = "0912345678", Email = "admin@sieupet.vn", MatKhau = "123456", VaiTro = "Admin", NgayVaoLam = DateTime.Today.AddYears(-1) },
-            new NhanVien { MaNhanVien = "NV002", HoTen = "Nguyen Minh Anh", SoDienThoai = "0909111222", Email = "ops@sieupet.vn", MatKhau = "123456", VaiTro = "Van hanh", NgayVaoLam = DateTime.Today.AddMonths(-10) },
-            new NhanVien { MaNhanVien = "NV003", HoTen = "Le Thu Ha", SoDienThoai = "0909888777", Email = "support@sieupet.vn", MatKhau = "123456", VaiTro = "CSKH", NgayVaoLam = DateTime.Today.AddMonths(-6) }
+            new NhanVien { MaNhanVien = "NV001", HoTen = "Le Xuan Toan", SoDienThoai = "0912345678", Email = "admin@sieupet.vn", MatKhau = "1234567", VaiTro = "Admin", NgayVaoLam = DateTime.Today.AddYears(-1) },
+            new NhanVien { MaNhanVien = "NV002", HoTen = "Nguyen Minh Anh", SoDienThoai = "0909111222", Email = "ops@sieupet.vn", MatKhau = "1234567", VaiTro = "Van hanh", NgayVaoLam = DateTime.Today.AddMonths(-10) },
+            new NhanVien { MaNhanVien = "NV003", HoTen = "Le Thu Ha", SoDienThoai = "0909888777", Email = "support@sieupet.vn", MatKhau = "1234567", VaiTro = "CSKH", NgayVaoLam = DateTime.Today.AddMonths(-6) }
         );
 
         context.KhachHangs.AddRange(
-            new KhachHang { MaKhachHang = "KH001", TenKhachHang = "Le Thu Ha", SoDienThoai = "0909888777", Email = "khachhang@sieupet.vn", MatKhau = "123456" },
-            new KhachHang { MaKhachHang = "KH002", TenKhachHang = "Nguyen Minh Anh", SoDienThoai = "0911222333", Email = "minhanh@gmail.com", MatKhau = "123456" },
-            new KhachHang { MaKhachHang = "KH003", TenKhachHang = "Tran Quoc Bao", SoDienThoai = "0988333444", Email = "quocbao@gmail.com", MatKhau = "123456" }
+            new KhachHang { MaKhachHang = "KH001", TenKhachHang = "Le Thu Ha", SoDienThoai = "0909888777", Email = "khachhang@sieupet.vn", MatKhau = "1234567" },
+            new KhachHang { MaKhachHang = "KH002", TenKhachHang = "Nguyen Minh Anh", SoDienThoai = "0911222333", Email = "minhanh@gmail.com", MatKhau = "1234567" },
+            new KhachHang { MaKhachHang = "KH003", TenKhachHang = "Tran Quoc Bao", SoDienThoai = "0988333444", Email = "quocbao@gmail.com", MatKhau = "1234567" }
         );
 
         context.DonHangs.AddRange(

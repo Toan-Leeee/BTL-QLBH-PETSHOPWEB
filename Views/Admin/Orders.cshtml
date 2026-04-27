@@ -1,18 +1,19 @@
 @model AdminOrdersViewModel
 @{
-    ViewData["Title"] = "Quan ly don hang";
+    ViewData["Title"] = "Quản lý đơn hàng";
 }
+
 <section class="admin-section">
     <div class="admin-hero">
-        <h1>Quan ly don hang</h1>
-        <p>Theo doi don hang theo dung ERD: nhan vien, khach hang, ngay tao, trang thai va tong tien.</p>
+        <h1>Quản lý đơn hàng</h1>
+        <p>Theo dõi đơn hàng theo đúng ERD: nhân viên, khách hàng, ngày tạo, trạng thái và tổng tiền.</p>
     </div>
 
     <div class="admin-panel search-panel">
         <form method="get" class="admin-filter-grid three-wide">
-            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma don, khach hang, nhan vien..." />
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tìm theo mã đơn, khách hàng, nhân viên..." />
             <select name="status">
-                <option value="">Tat ca trang thai</option>
+                <option value="">Tất cả trạng thái</option>
                 @foreach (var option in Model.StatusOptions)
                 {
                     if (Model.Status == option)
@@ -26,8 +27,8 @@
                 }
             </select>
             <div class="inline-actions end">
-                <button class="btn btn-primary" type="submit">Loc</button>
-                <a asp-action="Orders" class="btn btn-outline">Lam moi</a>
+                <button class="btn btn-primary" type="submit">Lọc</button>
+                <a asp-action="Orders" class="btn btn-outline">Làm mới</a>
             </div>
         </form>
     </div>
@@ -36,38 +37,49 @@
         <div class="admin-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>Danh sach don hang</h2>
-                    <small>@Model.Orders.Count() don hang</small>
+                    <h2>Danh sách đơn hàng</h2>
+                    <small>@Model.Orders.Count() đơn hàng</small>
                 </div>
             </div>
             <div class="table-wrap">
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th>Ma don</th>
-                            <th>Khach hang</th>
-                            <th>Nhan vien</th>
-                            <th>Tong tien</th>
-                            <th>Trang thai</th>
-                            <th>Ngay tao</th>
+                            <th>Mã đơn</th>
+                            <th>Khách hàng</th>
+                            <th>Nhân viên</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach (var item in Model.Orders)
-                    {
-                        <tr class="@(item.MaDonHang == Model.SelectedId ? "row-selected" : string.Empty)">
-                            <td>@item.MaDonHang</td>
-                            <td>@(item.KhachHang?.TenKhachHang ?? item.MaKhachHang)</td>
-                            <td>@(item.NhanVien?.HoTen ?? item.MaNhanVien)</td>
-                            <td>@item.TongTien.ToString("N0")</td>
-                            <td><span class="status-chip neutral">@item.TrangThai</span></td>
-                            <td>@item.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>
-                                <a asp-action="Orders" asp-route-keyword="@Model.Keyword" asp-route-status="@Model.Status" asp-route-selectedId="@item.MaDonHang" class="btn btn-outline small">Chi tiet</a>
-                            </td>
-                        </tr>
-                    }
+                        @foreach (var item in Model.Orders)
+                        {
+                            <tr class="@(item.MaDonHang == Model.SelectedId ? "row-selected" : string.Empty)">
+                                <td>@item.MaDonHang</td>
+                                <td>@(item.KhachHang?.TenKhachHang ?? item.MaKhachHang)</td>
+                                <td>@(item.NhanVien?.HoTen ?? item.MaNhanVien)</td>
+                                <td>@item.TongTien.ToString("N0")</td>
+                                <td><span class="status-chip neutral">@item.TrangThai</span></td>
+                                <td>@item.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <div class="inline-actions">
+                                        <a asp-action="Orders"
+                                           asp-route-keyword="@Model.Keyword"
+                                           asp-route-status="@Model.Status"
+                                           asp-route-selectedId="@item.MaDonHang"
+                                           class="btn btn-outline small">Chi tiết</a>
+                                        <form asp-action="DeleteOrder" method="post" class="inline-form" data-confirm="Ẩn đơn hàng này? Nếu đơn chưa xuất kho thì tồn kho sẽ được hoàn lại.">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.MaDonHang" />
+                                            <button class="btn btn-danger small" type="submit">Ẩn</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -77,27 +89,42 @@
             <div class="admin-panel form-panel" data-order-form-panel>
                 <div class="section-head compact with-meta">
                     <div>
-                        <h2>Cap nhat trang thai</h2>
-                        <small>@(Model.SelectedOrder?.MaDonHang ?? "Chon don hang de xem")</small>
+                        <h2>Cập nhật trạng thái</h2>
+                        <small>@(Model.SelectedOrder?.MaDonHang ?? "Chọn đơn hàng để xem")</small>
                     </div>
                 </div>
 
                 @if (Model.SelectedOrder is null)
                 {
-                    <div class="admin-empty-state compact"><p>Chua co don hang nao duoc chon.</p></div>
+                    <div class="admin-empty-state compact">
+                        <p>Chưa có đơn hàng nào được chọn.</p>
+                    </div>
                 }
                 else
                 {
                     <form asp-action="UpdateOrder" method="post" class="stack-form">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="id" value="@Model.SelectedOrder.MaDonHang" />
-                        <input type="text" value="@Model.SelectedOrder.MaDonHang" disabled />
-                        <div class="form-grid two">
-                            <input type="text" value="@(Model.SelectedOrder.KhachHang?.TenKhachHang ?? Model.SelectedOrder.MaKhachHang)" disabled />
-                            <input type="text" value="@(Model.SelectedOrder.NhanVien?.HoTen ?? Model.SelectedOrder.MaNhanVien)" disabled />
+
+                        <label class="field-label" for="selected-order-code">Mã đơn hàng</label>
+                        <input id="selected-order-code" type="text" value="@Model.SelectedOrder.MaDonHang" disabled />
+
+                        <div class="record-grid two">
+                            <div>
+                                <label class="field-label" for="selected-customer">Khách hàng</label>
+                                <input id="selected-customer" type="text" value="@(Model.SelectedOrder.KhachHang?.TenKhachHang ?? Model.SelectedOrder.MaKhachHang)" disabled />
+                            </div>
+                            <div>
+                                <label class="field-label" for="selected-employee">Nhân viên</label>
+                                <input id="selected-employee" type="text" value="@(Model.SelectedOrder.NhanVien?.HoTen ?? Model.SelectedOrder.MaNhanVien)" disabled />
+                            </div>
                         </div>
-                        <input type="text" value="@Model.SelectedOrder.TongTien.ToString("N0")" disabled />
-                        <select name="status">
+
+                        <label class="field-label" for="selected-total">Tổng tiền</label>
+                        <input id="selected-total" type="text" value="@Model.SelectedOrder.TongTien.ToString("N0")" disabled />
+
+                        <label class="field-label" for="selected-status">Trạng thái đơn hàng</label>
+                        <select id="selected-status" name="status">
                             @foreach (var option in Model.StatusOptions)
                             {
                                 if (Model.SelectedOrder.TrangThai == option)
@@ -110,7 +137,8 @@
                                 }
                             }
                         </select>
-                        <button class="btn btn-primary full" type="submit">Cap nhat don hang</button>
+
+                        <button class="btn btn-primary full" type="submit">Cập nhật đơn hàng</button>
                     </form>
                 }
             </div>
@@ -118,7 +146,7 @@
             @if (Model.SelectedOrder is not null)
             {
                 <div class="admin-panel" data-order-details-panel>
-                    <h2>Chi tiet don hang</h2>
+                    <h2>Chi tiết đơn hàng</h2>
                     <div class="mini-list">
                         @foreach (var item in Model.SelectedOrder.ChiTietDonHangs)
                         {
@@ -131,6 +159,7 @@
                             </div>
                         }
                     </div>
+                    <div class="hint">Ẩn đơn hàng sẽ giữ lại lịch sử tài chính. Với đơn chưa xuất kho, số lượng tồn sẽ được hoàn lại.</div>
                 </div>
             }
         </div>

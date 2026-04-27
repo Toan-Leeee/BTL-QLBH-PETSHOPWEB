@@ -33,6 +33,9 @@ public class NhanVien
     [Column("dNgayVaoLam")]
     public DateTime? NgayVaoLam { get; set; }
 
+    [Column("bDaXoa")]
+    public bool DaXoa { get; set; }
+
     public ICollection<DonHang> DonHangs { get; set; } = new List<DonHang>();
     public ICollection<PhieuNhap> PhieuNhaps { get; set; } = new List<PhieuNhap>();
 }

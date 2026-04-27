@@ -2,15 +2,16 @@
     var userName = Context.Session.GetString("UserName") ?? "Quản trị viên";
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
     var currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
-    var pageCssPath = $"~/css/{currentController}.{currentAction}.css";
-    var pageJsPath = $"~/js/{currentController}.{currentAction}.js";
+    var pageAssetName = ViewBag.PageAssetName as string;
+    var pageCssPath = !string.IsNullOrWhiteSpace(pageAssetName) ? $"~/css/{pageAssetName}.css" : $"~/css/{currentController}.{currentAction}.css";
+    var pageJsPath = !string.IsNullOrWhiteSpace(pageAssetName) ? $"~/js/{pageAssetName}.js" : $"~/js/{currentController}.{currentAction}.js";
 }
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Admin SiêuPet</title>
+    <title>@ViewData["Title"] - Admin SieuPet</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
     <link rel="stylesheet" href="@pageCssPath" asp-append-version="true" />
@@ -19,16 +20,16 @@
     <div class="admin-shell">
         <aside class="admin-sidebar">
             <a asp-controller="Home" asp-action="Index" class="brand sidebar-brand">
-                <img src="~/images/logo.png" alt="SiêuPet" />
+                <img src="~/images/logo.png" alt="SieuPet" />
             </a>
             <nav>
-                <a class="@(currentAction == "Products" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Products">Sản phẩm</a>
-                <a class="@(currentAction == "Categories" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Categories">Danh mục</a>
-                <a class="@(currentAction == "Orders" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Orders">Đơn hàng</a>
-                <a class="@(currentAction == "Imports" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Imports">Phiếu nhập</a>
-                <a class="@(currentAction == "Customers" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Customers">Khách hàng</a>
-                <a class="@(currentAction == "Accounts" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Accounts">Nhân viên</a>
-                <a class="@(currentAction == "Reports" ? "active" : string.Empty)" asp-controller="Admin" asp-action="Reports">Báo cáo</a>
+                <a class="@(currentController == "AdminProducts" ? "active" : string.Empty)" asp-controller="AdminProducts" asp-action="Products">Sản phẩm</a>
+                <a class="@(currentController == "AdminCategories" ? "active" : string.Empty)" asp-controller="AdminCategories" asp-action="Categories">Danh mục</a>
+                <a class="@(currentController == "AdminOrders" ? "active" : string.Empty)" asp-controller="AdminOrders" asp-action="Orders">Đơn hàng</a>
+                <a class="@(currentController == "AdminImports" ? "active" : string.Empty)" asp-controller="AdminImports" asp-action="Imports">Phiếu nhập</a>
+                <a class="@(currentController == "AdminCustomers" ? "active" : string.Empty)" asp-controller="AdminCustomers" asp-action="Customers">Khách hàng</a>
+                <a class="@(currentController == "AdminAccounts" ? "active" : string.Empty)" asp-controller="AdminAccounts" asp-action="Accounts">Nhân viên</a>
+                <a class="@(currentController == "AdminReports" ? "active" : string.Empty)" asp-controller="AdminReports" asp-action="Reports">Báo cáo</a>
             </nav>
             <div class="admin-profile">
                 <strong>@userName</strong>

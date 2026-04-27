@@ -1,20 +1,20 @@
 @model AdminCustomersViewModel
 @{
-    ViewData["Title"] = "Quan ly khach hang";
+    ViewData["Title"] = "Quản lý khách hàng";
 }
 <section class="admin-section">
     <div class="admin-hero">
-        <h1>Quan ly khach hang</h1>
-        <p>Theo doi tai khoan khach hang, thong tin lien he va lich su dat hang tu khu vuc admin.</p>
+        <h1>Quản lý khách hàng</h1>
+        <p>Theo dõi tài khoản khách hàng, thông tin liên hệ và lịch sử đặt hàng từ khu vực admin.</p>
     </div>
 
     <div class="admin-panel search-panel">
         <form method="get" class="admin-filter-grid three-wide">
-            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma, ten, email, so dien thoai..." />
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tìm theo mã, tên, email, số điện thoại..." />
             <div></div>
             <div class="inline-actions end">
-                <button class="btn btn-primary" type="submit">Tim kiem</button>
-                <a asp-action="Customers" class="btn btn-outline">Lam moi</a>
+                <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                <a asp-action="Customers" class="btn btn-outline">Làm mới</a>
             </div>
         </form>
     </div>
@@ -23,16 +23,16 @@
         <div class="admin-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>Danh sach khach hang</h2>
-                    <small>@Model.Customers.Count() tai khoan</small>
+                    <h2>Danh sách khách hàng</h2>
+                    <small>@Model.Customers.Count() tài khoản</small>
                 </div>
             </div>
 
             @if (!Model.Customers.Any())
             {
                 <div class="admin-empty-state">
-                    <h3>Chua co khach hang</h3>
-                    <p>Ban co the tao tai khoan khach hang moi ngay tai day.</p>
+                    <h3>Chưa có khách hàng</h3>
+                    <p>Bạn có thể tạo tài khoản khách hàng mới ngay tại đây.</p>
                 </div>
             }
             else
@@ -41,9 +41,9 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>Ma KH</th>
-                                <th>Thong tin</th>
-                                <th>Don hang</th>
+                                <th>Mã KH</th>
+                                <th>Thông tin</th>
+                                <th>Đơn hàng</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -63,11 +63,11 @@
                                         <a asp-action="Customers"
                                            asp-route-keyword="@Model.Keyword"
                                            asp-route-selectedId="@item.MaKhachHang"
-                                           class="btn btn-outline small">Sua</a>
-                                        <form asp-action="DeleteCustomer" method="post" class="inline-form" data-confirm="Xoa khach hang nay?">
+                                           class="btn btn-outline small">Sửa</a>
+                                        <form asp-action="DeleteCustomer" method="post" class="inline-form" data-confirm="Xóa khách hàng này?">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@item.MaKhachHang" />
-                                            <button class="btn btn-danger small" type="submit">Xoa</button>
+                                            <button class="btn btn-danger small" type="submit">Xóa</button>
                                         </form>
                                     </div>
                                 </td>
@@ -82,23 +82,23 @@
         <div class="admin-panel form-panel sticky-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>@(string.IsNullOrWhiteSpace(Model.FormCustomer.MaKhachHang) ? "Them khach hang" : "Chinh sua khach hang")</h2>
-                    <small>@(string.IsNullOrWhiteSpace(Model.FormCustomer.MaKhachHang) ? "Tao tai khoan khach hang moi" : $"Dang sua {Model.FormCustomer.MaKhachHang}")</small>
+                    <h2>@(string.IsNullOrWhiteSpace(Model.FormCustomer.MaKhachHang) ? "Thêm khách hàng" : "Chỉnh sửa khách hàng")</h2>
+                    <small>@(string.IsNullOrWhiteSpace(Model.FormCustomer.MaKhachHang) ? "Tạo tài khoản khách hàng mới" : $"Đang sửa {Model.FormCustomer.MaKhachHang}")</small>
                 </div>
             </div>
 
             <form asp-action="SaveCustomer" method="post" class="stack-form" data-admin-form="customers">
                 @Html.AntiForgeryToken()
-                <input name="MaKhachHang" value="@Model.FormCustomer.MaKhachHang" placeholder="Ma khach hang (de trong de tu sinh)" />
-                <input name="TenKhachHang" value="@Model.FormCustomer.TenKhachHang" placeholder="Ho ten khach hang" />
+                <input name="MaKhachHang" value="@Model.FormCustomer.MaKhachHang" placeholder="Mã khách hàng (để trống để tự sinh)" />
+                <input name="TenKhachHang" value="@Model.FormCustomer.TenKhachHang" placeholder="Họ tên khách hàng" />
                 <div class="form-grid two">
                     <input name="Email" value="@Model.FormCustomer.Email" placeholder="Email" />
-                    <input name="SoDienThoai" value="@Model.FormCustomer.SoDienThoai" placeholder="So dien thoai" />
+                    <input name="SoDienThoai" value="@Model.FormCustomer.SoDienThoai" placeholder="Số điện thoại" />
                 </div>
-                <input name="MatKhau" value="@Model.FormCustomer.MatKhau" placeholder="Mat khau (de trong de giu nguyen / mac dinh 123456)" />
+                <input name="MatKhau" value="@Model.FormCustomer.MatKhau" placeholder="Mật khẩu (để trống để giữ nguyên / mặc định 1234567)" />
                 <div class="inline-actions stretch">
-                    <button class="btn btn-primary full" type="submit">Luu khach hang</button>
-                    <a asp-action="Customers" class="btn btn-outline full">Tao moi</a>
+                    <button class="btn btn-primary full" type="submit">Lưu khách hàng</button>
+                    <a asp-action="Customers" class="btn btn-outline full">Tạo mới</a>
                 </div>
             </form>
         </div>

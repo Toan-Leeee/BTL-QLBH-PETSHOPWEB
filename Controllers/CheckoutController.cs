@@ -81,14 +81,15 @@ public class CheckoutController : Controller
         }
 
         var customerId = HttpContext.Session.GetString("CustomerId");
-        var orderId = $"DH{DateTime.Now:yyMMddHHmmss}";
+        var now = DateTime.Now;
+        var orderId = $"DH{now:ddHHmmss}";
 
         var order = new DonHang
         {
             MaDonHang = orderId,
             MaKhachHang = customerId,
             MaNhanVien = "NV001",
-            NgayTao = DateTime.Now,
+            NgayTao = now,
             TrangThai = "Cho xac nhan",
             TongTien = model.Cart.GrandTotal
         };
@@ -107,7 +108,7 @@ public class CheckoutController : Controller
 
             _context.ChiTietDonHangs.Add(new ChiTietDonHang
             {
-                MaChiTietDonHang = $"CT{DateTime.Now:HHmmss}{index:00}",
+                MaChiTietDonHang = $"CT{now:HHmmss}{index:00}",
                 MaDonHang = orderId,
                 MaSanPham = item.ProductId,
                 SoLuong = item.Quantity,

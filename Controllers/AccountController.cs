@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SieuPetMvc.Data;
 using SieuPetMvc.Models;
 using SieuPetMvc.ViewModels;
@@ -24,31 +23,38 @@ public class AccountController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(LoginViewModel model)
+    public IActionResult Login(LoginViewModel model)
     {
         ViewBag.BodyClass = "auth-page";
-        if (!ModelState.IsValid)
+
+        if (ModelState.IsValid == false)
         {
             return View(model);
         }
 
-        var employee = await _context.NhanViens.FirstOrDefaultAsync(x =>
-            (x.Email == model.EmailOrPhone || x.SoDienThoai == model.EmailOrPhone) && x.MatKhau == model.Password);
-        if (employee is not null)
+        var employee = _context.NhanViens.FirstOrDefault(x =>
+            (x.Email == model.EmailOrPhone || x.SoDienThoai == model.EmailOrPhone)
+            && x.MatKhau == model.Password);
+
+        if (employee != null)
         {
             HttpContext.Session.SetString("UserName", employee.HoTen);
             HttpContext.Session.SetString("UserRole", employee.VaiTro);
             HttpContext.Session.SetString("EmployeeId", employee.MaNhanVien);
-            return RedirectToAction("Products", "Admin");
+
+            return RedirectToAction("Products", "AdminProducts");
         }
 
-        var customer = await _context.KhachHangs.FirstOrDefaultAsync(x =>
-            (x.Email == model.EmailOrPhone || x.SoDienThoai == model.EmailOrPhone) && x.MatKhau == model.Password);
-        if (customer is not null)
+        var customer = _context.KhachHangs.FirstOrDefault(x =>
+            (x.Email == model.EmailOrPhone || x.SoDienThoai == model.EmailOrPhone)
+            && x.MatKhau == model.Password);
+
+        if (customer != null)
         {
             HttpContext.Session.SetString("UserName", customer.TenKhachHang);
             HttpContext.Session.SetString("UserRole", "Customer");
             HttpContext.Session.SetString("CustomerId", customer.MaKhachHang);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -65,16 +71,19 @@ public class AccountController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Register(RegisterViewModel model)
+    public IActionResult Register(RegisterViewModel model)
     {
         ViewBag.BodyClass = "auth-page";
 
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid == false)
         {
             return View(model);
         }
 
-        if (await _context.KhachHangs.AnyAsync(x => x.Email == model.Email || x.SoDienThoai == model.Phone))
+        var checkCustomer = _context.KhachHangs.FirstOrDefault(x =>
+            x.Email == model.Email || x.SoDienThoai == model.Phone);
+
+        if (checkCustomer != null)
         {
             ModelState.AddModelError(string.Empty, "Email hoặc số điện thoại đã tồn tại.");
             return View(model);
@@ -90,10 +99,10 @@ public class AccountController : Controller
         };
 
         _context.KhachHangs.Add(customer);
-        await _context.SaveChangesAsync();
+        _context.SaveChanges();
 
         TempData["Success"] = "Đăng ký tài khoản thành công. Hãy đăng nhập để tiếp tục.";
-        return RedirectToAction(nameof(Login));
+        return RedirectToAction("Login");
     }
 
     public IActionResult Logout()

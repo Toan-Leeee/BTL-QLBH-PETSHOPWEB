@@ -28,6 +28,9 @@ public class DonHang
     [Column("mTongTien")]
     public decimal TongTien { get; set; }
 
+    [Column("bDaXoa")]
+    public bool DaXoa { get; set; }
+
     public NhanVien? NhanVien { get; set; }
     public KhachHang? KhachHang { get; set; }
     public ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();

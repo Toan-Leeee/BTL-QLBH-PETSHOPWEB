@@ -1,44 +1,118 @@
 @model OrderSuccessViewModel
 @{
-    ViewData["Title"] = "Đặt đơn thành công";
+    ViewData["Title"] = "Thanh toán thành công";
+    var primaryItem = Model.Items.FirstOrDefault(x => x.Label != "Phu kien") ?? Model.Items.FirstOrDefault();
+    var accessoryTotal = Model.Items.Where(x => x.Label == "Phu kien").Sum(x => x.LineTotal);
 }
-<section class="section section-warm">
-    <div class="container page-title-block">
-        <p class="breadcrumb">Trang chủ &gt; Giỏ hàng &gt; Thanh toán &gt; Hoàn tất</p>
-        <h1>Đặt đơn thành công</h1>
-        <p>Đơn hàng của bạn đã được ghi nhận trong hệ thống.</p>
+<section class="section section-warm success-page-section">
+    <div class="container success-topbar">
+        <a asp-controller="Home" asp-action="Index" class="brand">
+            <img src="~/images/logo.png" alt="SiêuPet" />
+        </a>
+        <div class="success-hotline">Hotline hỗ trợ: 1900 1234</div>
     </div>
 
-    <div class="container cart-layout success-grid">
-        <div>
-            <div class="stepper">
-                <div class="step">1 Giỏ hàng</div>
-                <div class="step">2 Thanh toán</div>
-                <div class="step active">3 Hoàn tất</div>
-            </div>
-            <div class="success-card">
-                <div class="success-icon">OK</div>
-                <h2>Đặt đơn thành công</h2>
-                <p>Hệ thống đã tạo đơn hàng theo mô hình ERD và cập nhật chi tiết đơn hàng từ giỏ hàng của bạn.</p>
-                <div class="hero-actions">
-                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Tiếp tục mua sắm</a>
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline">Về trang chủ</a>
+    <div class="container success-heading">
+        <p class="breadcrumb">Trang chủ &gt; Giỏ hàng &gt; Thanh toán &gt; Hoàn tất</p>
+        <h1>Thanh toán thành công</h1>
+        <p>Đơn hàng của bạn đã được ghi nhận. sieuPet sẽ liên hệ xác nhận lịch nhận nuôi sớm nhất.</p>
+    </div>
+
+    <div class="container success-main">
+        <div class="success-content">
+            <div class="success-stepper">
+                <div class="step-item done">
+                    <span class="step-index">1</span>
+                    <span>Giỏ hàng</span>
+                </div>
+                <span class="step-line"></span>
+                <div class="step-item done">
+                    <span class="step-index">2</span>
+                    <span>Thanh toán</span>
+                </div>
+                <span class="step-line"></span>
+                <div class="step-item active">
+                    <span class="step-index">3</span>
+                    <span>Hoàn tất</span>
                 </div>
             </div>
+
+            <section class="success-card success-hero-card">
+                <div class="success-check-wrap">
+                    <div class="success-check"></div>
+                </div>
+                <h2>Đặt đơn thành công!</h2>
+                <p>Cảm ơn bạn đã lựa chọn sieuPet. Chúng tôi đã gửi thông tin xác nhận đơn hàng và sẽ liên hệ để chốt lịch gặp bé cưng trong thời gian sớm nhất.</p>
+                <div class="success-action-row">
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary large">Tiếp tục mua sắm</a>
+                    <a href="#order-info" class="btn btn-outline btn-outline-accent large">Xem chi tiết đơn hàng</a>
+                </div>
+            </section>
+
+            <section class="next-steps success-next-steps">
+                <h2>Các bước tiếp theo</h2>
+                <ol>
+                    <li>
+                        <strong>Xác nhận từ sieuPet</strong>
+                        <span>Nhân viên sẽ gọi hoặc nhắn tin để xác nhận thông tin nhận nuôi.</span>
+                    </li>
+                    <li>
+                        <strong>Đặt lịch gặp bé cưng</strong>
+                        <span>Chúng tôi sắp xếp thời gian phù hợp để bạn đến gặp và nhận tư vấn.</span>
+                    </li>
+                    <li>
+                        <strong>Hoàn tất nhận nuôi</strong>
+                        <span>Nhận bé cưng, hồ sơ sức khỏe và hướng dẫn chăm sóc ban đầu.</span>
+                    </li>
+                </ol>
+            </section>
         </div>
-        <aside>
-            <div class="summary-card">
+
+        <aside class="success-sidebar">
+            <section id="order-info" class="summary-card success-order-panel">
                 <h2>Thông tin đơn hàng</h2>
-                <div class="order-code">Mã đơn hàng <strong>@Model.Order.MaDonHang</strong></div>
-                @foreach (var item in Model.Items)
+                <div class="order-code">
+                    <span>Mã đơn hàng</span>
+                    <strong>@Model.Order.MaDonHang</strong>
+                    <small>@Model.Order.NgayTao.ToString("dd/MM/yyyy • HH:mm")</small>
+                </div>
+
+                @if (primaryItem is not null)
                 {
-                    <div class="checkout-item compact">
-                        <h3>@item.Name</h3>
-                        <p>@item.Quantity x @item.Price.ToString("N0")</p>
-                    </div>
+                    <article class="success-order-item">
+                        <img src="@primaryItem.ImageUrl" alt="@primaryItem.Name" />
+                        <div>
+                            <h3>@primaryItem.Name</h3>
+                            <p>@primaryItem.Subtitle</p>
+                            <strong>@primaryItem.LineTotal.ToString("N0") VND</strong>
+                        </div>
+                    </article>
                 }
-                <div class="summary-row total"><span>Tổng thanh toán</span><strong>@Model.Order.TongTien.ToString("N0")</strong></div>
-            </div>
+
+                <div class="summary-block">
+                    <div class="summary-row">
+                        <span>Phụ kiện đi kèm</span>
+                        <strong>@accessoryTotal.ToString("N0")</strong>
+                    </div>
+                    <div class="summary-row discount">
+                        <span>Ưu đãi áp dụng</span>
+                        <strong>0</strong>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Tổng thanh toán</span>
+                        <strong>@Model.Order.TongTien.ToString("N0")</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="success-help-card">
+                <h3>Bạn cần hỗ trợ thêm?</h3>
+                <p>Liên hệ đội ngũ sieuPet để được tư vấn chăm sóc, lịch nhận nuôi hoặc chuẩn bị phụ kiện phù hợp cho bé cưng mới của bạn.</p>
+                <div class="success-help-actions">
+                    <a href="#footer" class="btn btn-accent">Liên hệ tư vấn</a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline light">Về trang chủ</a>
+                </div>
+            </section>
         </aside>
     </div>
 </section>

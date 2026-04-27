@@ -1,35 +1,35 @@
 @model AdminCategoriesViewModel
 @{
-    ViewData["Title"] = "Quan ly danh muc";
+    ViewData["Title"] = "Quản lý danh mục";
 }
 <section class="admin-section">
     <div class="admin-hero">
-        <h1>Quan ly danh muc</h1>
-        <p>Them, chinh sua va kiem soat cac nhom thu cung phu kien dang duoc ban trong he thong.</p>
+        <h1>Quản lý danh mục</h1>
+        <p>Thêm, chỉnh sửa và kiểm soát các nhóm thú cưng, phụ kiện đang được bán trong hệ thống.</p>
     </div>
 
     <div class="admin-summary-strip">
         <div class="admin-summary-card">
-            <span>Tong danh muc</span>
+            <span>Tổng danh mục</span>
             <strong>@Model.Categories.Count()</strong>
         </div>
         <div class="admin-summary-card">
-            <span>Danh muc dang chon</span>
+            <span>Danh mục đang chọn</span>
             <strong>@(Model.SelectedCategory?.MaDanhMuc ?? "--")</strong>
         </div>
         <div class="admin-summary-card">
-            <span>So san pham gan</span>
+            <span>Số sản phẩm gắn</span>
             <strong>@(Model.SelectedCategory?.SanPhams.Count ?? 0)</strong>
         </div>
     </div>
 
     <div class="admin-panel search-panel">
         <form method="get" class="admin-filter-grid three-wide">
-            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tim theo ma, ten danh muc..." />
+            <input type="text" name="keyword" value="@Model.Keyword" placeholder="Tìm theo mã, tên danh mục..." />
             <div></div>
             <div class="inline-actions end">
-                <button class="btn btn-primary" type="submit">Tim kiem</button>
-                <a asp-action="Categories" class="btn btn-outline">Lam moi</a>
+                <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                <a asp-action="Categories" class="btn btn-outline">Làm mới</a>
             </div>
         </form>
     </div>
@@ -38,16 +38,16 @@
         <div class="admin-panel">
             <div class="section-head compact with-meta">
                 <div>
-                    <h2>Danh sach danh muc</h2>
-                    <small>@Model.Categories.Count() danh muc</small>
+                    <h2>Danh sách danh mục</h2>
+                    <small>@Model.Categories.Count() danh mục</small>
                 </div>
             </div>
 
             @if (!Model.Categories.Any())
             {
                 <div class="admin-empty-state">
-                    <h3>Chua co danh muc</h3>
-                    <p>Hay tao danh muc dau tien de gan san pham.</p>
+                    <h3>Chưa có danh mục</h3>
+                    <p>Hãy tạo danh mục đầu tiên để gắn sản phẩm.</p>
                 </div>
             }
             else
@@ -56,9 +56,9 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>Ma DM</th>
-                                <th>Ten danh muc</th>
-                                <th>So san pham</th>
+                                <th>Mã DM</th>
+                                <th>Tên danh mục</th>
+                                <th>Số sản phẩm</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -71,17 +71,17 @@
                                     <div class="table-title">@item.TenDanhMuc</div>
                                     <small>@item.MoTa</small>
                                 </td>
-                                <td><span class="status-chip neutral">@item.SanPhams.Count san pham</span></td>
+                                <td><span class="status-chip neutral">@item.SanPhams.Count sản phẩm</span></td>
                                 <td>
                                     <div class="inline-actions">
                                         <a asp-action="Categories"
                                            asp-route-keyword="@Model.Keyword"
                                            asp-route-selectedId="@item.MaDanhMuc"
-                                           class="btn btn-outline small">Sua</a>
-                                        <form asp-action="DeleteCategory" method="post" class="inline-form" data-confirm="Xoa danh muc nay?">
+                                           class="btn btn-outline small">Sửa</a>
+                                        <form asp-action="DeleteCategory" method="post" class="inline-form" data-confirm="Xóa danh mục này?">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@item.MaDanhMuc" />
-                                            <button class="btn btn-danger small" type="submit">Xoa</button>
+                                            <button class="btn btn-danger small" type="submit">Xóa</button>
                                         </form>
                                     </div>
                                 </td>
@@ -95,17 +95,17 @@
 
         <div class="admin-side-stack sticky-panel">
             <div class="record-card" data-admin-record-card>
-                <h3>Thong tin danh muc</h3>
+                <h3>Thông tin danh mục</h3>
                 @if (Model.SelectedCategory is null)
                 {
-                    <p class="muted-note">Chon mot danh muc de xem nhanh mo ta va so san pham dang duoc gan.</p>
+                    <p class="muted-note">Chọn một danh mục để xem nhanh mô tả và số sản phẩm đang được gắn.</p>
                 }
                 else
                 {
                     <div class="info-pairs">
-                        <div><strong>Ten danh muc</strong>@Model.SelectedCategory.TenDanhMuc</div>
-                        <div><strong>Mo ta</strong>@(Model.SelectedCategory.MoTa ?? "Chua co mo ta")</div>
-                        <div><strong>So san pham</strong>@Model.SelectedCategory.SanPhams.Count</div>
+                        <div><strong>Tên danh mục</strong>@Model.SelectedCategory.TenDanhMuc</div>
+                        <div><strong>Mô tả</strong>@(Model.SelectedCategory.MoTa ?? "Chưa có mô tả")</div>
+                        <div><strong>Số sản phẩm</strong>@Model.SelectedCategory.SanPhams.Count</div>
                     </div>
                 }
             </div>
@@ -113,20 +113,20 @@
             <div class="admin-panel form-panel">
                 <div class="section-head compact with-meta">
                     <div>
-                        <h2>@(string.IsNullOrWhiteSpace(Model.FormCategory.MaDanhMuc) ? "Them danh muc" : "Chinh sua danh muc")</h2>
-                        <small>@(string.IsNullOrWhiteSpace(Model.FormCategory.MaDanhMuc) ? "Tao nhom san pham moi" : $"Dang sua {Model.FormCategory.MaDanhMuc}")</small>
+                        <h2>@(string.IsNullOrWhiteSpace(Model.FormCategory.MaDanhMuc) ? "Thêm danh mục" : "Chỉnh sửa danh mục")</h2>
+                        <small>@(string.IsNullOrWhiteSpace(Model.FormCategory.MaDanhMuc) ? "Tạo nhóm sản phẩm mới" : $"Đang sửa {Model.FormCategory.MaDanhMuc}")</small>
                     </div>
                 </div>
 
                 <form asp-action="SaveCategory" method="post" class="stack-form" data-admin-form="categories">
                     @Html.AntiForgeryToken()
-                    <input name="MaDanhMuc" value="@Model.FormCategory.MaDanhMuc" placeholder="Ma danh muc (de trong de tu sinh)" />
-                    <input name="TenDanhMuc" value="@Model.FormCategory.TenDanhMuc" placeholder="Ten danh muc" />
-                    <textarea name="MoTa" rows="5" placeholder="Mo ta chi tiet" data-auto-resize>@Model.FormCategory.MoTa</textarea>
-                    <div class="hint">Danh muc duoc dung de nhom san pham o giao dien ban hang va admin.</div>
+                    <input name="MaDanhMuc" value="@Model.FormCategory.MaDanhMuc" placeholder="Mã danh mục (để trống để tự sinh)" />
+                    <input name="TenDanhMuc" value="@Model.FormCategory.TenDanhMuc" placeholder="Tên danh mục" />
+                    <textarea name="MoTa" rows="5" placeholder="Mô tả chi tiết" data-auto-resize>@Model.FormCategory.MoTa</textarea>
+                    <div class="hint">Danh mục được dùng để nhóm sản phẩm ở giao diện bán hàng và admin.</div>
                     <div class="inline-actions stretch">
-                        <button class="btn btn-primary full" type="submit">Luu danh muc</button>
-                        <a asp-action="Categories" class="btn btn-outline full">Tao moi</a>
+                        <button class="btn btn-primary full" type="submit">Lưu danh mục</button>
+                        <a asp-action="Categories" class="btn btn-outline full">Tạo mới</a>
                     </div>
                 </form>
             </div>
