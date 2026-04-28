@@ -1,6 +1,10 @@
 @model AdminProductsViewModel
 @{
     ViewData["Title"] = "Quản lý sản phẩm";
+    string DisplayImage(string? imageUrl) =>
+        string.IsNullOrWhiteSpace(imageUrl) || imageUrl.EndsWith(".svg", StringComparison.OrdinalIgnoreCase)
+            ? "/images/products/image 22.jpg"
+            : imageUrl;
 }
 <section class="admin-section">
     <div class="admin-hero">
@@ -142,10 +146,10 @@
 
                 <input name="HinhAnh"
                        value="@Model.FormProduct.HinhAnh"
-                       placeholder="Đường dẫn ảnh, ví dụ /images/products/default.svg"
+                       placeholder="Đường dẫn ảnh, ví dụ /images/products/image 22.jpg"
                        data-product-image-input />
                 <div class="admin-image-preview">
-                    <img src="@(string.IsNullOrWhiteSpace(Model.FormProduct.HinhAnh) ? "/images/products/default.svg" : Model.FormProduct.HinhAnh)"
+                    <img src="@DisplayImage(Model.FormProduct.HinhAnh)"
                          alt="Ảnh sản phẩm"
                          data-product-image-preview />
                     <small>Xem trước ảnh đang gắn cho sản phẩm.</small>

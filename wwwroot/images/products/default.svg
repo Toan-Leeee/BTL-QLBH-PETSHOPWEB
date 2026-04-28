@@ -1,9 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
-  <rect width="1200" height="900" rx="48" fill="#edf0f6"/>
-  <circle cx="320" cy="350" r="170" fill="#ffffff" opacity="0.55"/>
-  <circle cx="840" cy="250" r="110" fill="#ffffff" opacity="0.28"/>
-  <circle cx="940" cy="620" r="170" fill="#ffffff" opacity="0.22"/>
-  <path d="M170 660C220 560 350 510 470 530C625 557 685 688 790 728C886 765 1012 731 1070 650V822H142V700C152 686 161 673 170 660Z" fill="#0d3b66" opacity="0.12"/>
-  <text x="600" y="420" font-size="74" text-anchor="middle" font-family="Segoe UI, Arial" fill="#0d3b66" font-weight="700">SieuPet</text>
-  <text x="600" y="500" font-size="32" text-anchor="middle" font-family="Segoe UI, Arial" fill="#33597f">sieuPet mock asset</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Anh cho tam thoi">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8e2bd"/>
+      <stop offset="1" stop-color="#cfe1ff"/>
+    </linearGradient>
+    <linearGradient id="fur" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d99a52"/>
+      <stop offset="1" stop-color="#9c5b2c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#bg)"/>
+  <circle cx="230" cy="190" r="96" fill="#fff7e6" opacity=".55"/>
+  <circle cx="980" cy="170" r="125" fill="#ffffff" opacity=".38"/>
+  <circle cx="1020" cy="720" r="150" fill="#ffffff" opacity=".26"/>
+  <ellipse cx="600" cy="770" rx="390" ry="62" fill="#0d3b66" opacity=".12"/>
+
+  <path d="M338 555c-30-74 6-150 78-176 60-22 126 2 161 53 28-37 76-60 129-55 88 8 145 83 129 171-15 82-92 140-180 135l-194-10c-57-3-103-47-123-118Z" fill="url(#fur)"/>
+  <path d="M438 428c-62-82-77-154-38-195 47 25 82 73 102 141Z" fill="#7b4427"/>
+  <path d="M761 428c62-82 77-154 38-195-47 25-82 73-102 141Z" fill="#7b4427"/>
+  <circle cx="600" cy="432" r="206" fill="url(#fur)"/>
+  <ellipse cx="600" cy="548" rx="142" ry="100" fill="#f1c889"/>
+  <circle cx="522" cy="414" r="27" fill="#162238"/>
+  <circle cx="678" cy="414" r="27" fill="#162238"/>
+  <circle cx="532" cy="403" r="8" fill="#fff"/>
+  <circle cx="688" cy="403" r="8" fill="#fff"/>
+  <path d="M570 500c10-24 50-24 60 0 5 14-5 29-30 39-25-10-35-25-30-39Z" fill="#2b1c17"/>
+  <path d="M600 534c-4 43-33 72-76 74" fill="none" stroke="#6d3d25" stroke-width="12" stroke-linecap="round"/>
+  <path d="M600 534c4 43 33 72 76 74" fill="none" stroke="#6d3d25" stroke-width="12" stroke-linecap="round"/>
+  <path d="M516 333c45-35 117-46 168-4" fill="none" stroke="#f4d6a4" stroke-width="28" stroke-linecap="round" opacity=".72"/>
+  <path d="M415 650c75 82 294 102 405 0" fill="none" stroke="#0d3b66" stroke-width="22" stroke-linecap="round" opacity=".16"/>
+  <text x="600" y="825" font-size="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" fill="#0d3b66" font-weight="700">SieuPet</text>
 </svg>

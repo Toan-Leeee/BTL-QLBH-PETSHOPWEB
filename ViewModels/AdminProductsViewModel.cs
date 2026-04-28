@@ -10,7 +10,7 @@ public class AdminProductsViewModel
     {
         TrangThai = true,
         SoLuongTonKho = 1,
-        HinhAnh = "/images/products/default.svg"
+        HinhAnh = "/images/products/image 22.jpg"
     };
 
     public string? Keyword { get; set; }

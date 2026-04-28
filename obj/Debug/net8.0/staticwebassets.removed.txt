@@ -1,2 +1,0 @@
-D:\lol\SieuPetMvc_complete\SieuPetMvc\wwwroot\css\Admin.Suppliers.css
-D:\lol\SieuPetMvc_complete\SieuPetMvc\wwwroot\js\Admin.Suppliers.js

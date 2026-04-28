@@ -9,6 +9,8 @@ namespace SieuPetMvc.Controllers;
 [Route("admin/products")]
 public class AdminProductsController : AdminBaseController
 {
+    private const string FallbackProductImage = "/images/products/image 22.jpg";
+
     public AdminProductsController(ApplicationDbContext context) : base(context)
     {
     }
@@ -56,7 +58,7 @@ public class AdminProductsController : AdminBaseController
                     HinhAnh = selected.HinhAnh,
                     TrangThai = selected.TrangThai
                 }
-                : new SanPham { MaDanhMuc = categories.FirstOrDefault()?.MaDanhMuc ?? string.Empty, TrangThai = true, SoLuongTonKho = 1, HinhAnh = "/images/products/default.svg" }
+                : new SanPham { MaDanhMuc = categories.FirstOrDefault()?.MaDanhMuc ?? string.Empty, TrangThai = true, SoLuongTonKho = 1, HinhAnh = FallbackProductImage }
         };
 
         return View("~/Views/Admin/Products.cshtml", model);
@@ -69,7 +71,7 @@ public class AdminProductsController : AdminBaseController
         if (!EnsureAdmin()) return RedirectToAction("Login", "Account");
         try
         {
-            product.HinhAnh = string.IsNullOrWhiteSpace(product.HinhAnh) ? "/images/products/default.svg" : product.HinhAnh.Trim();
+            product.HinhAnh = string.IsNullOrWhiteSpace(product.HinhAnh) ? FallbackProductImage : product.HinhAnh.Trim();
             product.TenSanPham = product.TenSanPham?.Trim() ?? string.Empty;
             product.MoTa = product.MoTa?.Trim();
 

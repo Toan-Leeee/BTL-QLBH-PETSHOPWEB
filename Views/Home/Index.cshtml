@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "Trang chủ";
     var returnUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+    const string fallbackDogImage = "/images/products/image 22.jpg";
+    string DisplayImage(string? imageUrl) =>
+        string.IsNullOrWhiteSpace(imageUrl) || imageUrl.EndsWith(".svg", StringComparison.OrdinalIgnoreCase)
+            ? fallbackDogImage
+            : imageUrl;
 }
 <section class="hero-section">
     <div class="container hero-grid">
@@ -32,7 +37,7 @@
         {
             <article class="product-card">
                 <a asp-controller="Product" asp-action="Details" asp-route-id="@item.MaSanPham">
-                    <img src="@item.HinhAnh" alt="@item.TenSanPham" />
+                    <img src="@DisplayImage(item.HinhAnh)" alt="@item.TenSanPham" />
                 </a>
                 <div class="product-body">
                     <h3><a asp-controller="Product" asp-action="Details" asp-route-id="@item.MaSanPham">@item.TenSanPham</a></h3>
@@ -81,7 +86,7 @@
         @foreach (var article in Model.Articles)
         {
             <article class="article-card">
-                <img src="@article.ImageUrl" alt="@article.Title" />
+                <img src="@DisplayImage(article.ImageUrl)" alt="@article.Title" />
                 <div class="article-body">
                     <span class="badge">@article.Badge</span>
                     <h3>@article.Title</h3>

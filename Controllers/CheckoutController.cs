@@ -9,6 +9,8 @@ namespace SieuPetMvc.Controllers;
 
 public class CheckoutController : Controller
 {
+    private const string FallbackProductImage = "/images/products/image 22.jpg";
+
     private readonly ApplicationDbContext _context;
     private readonly ICartService _cartService;
 
@@ -145,7 +147,9 @@ public class CheckoutController : Controller
             {
                 ProductId = x.MaSanPham,
                 Name = x.SanPham?.TenSanPham ?? string.Empty,
-                ImageUrl = x.SanPham?.HinhAnh ?? "/images/products/default.svg",
+                ImageUrl = string.IsNullOrWhiteSpace(x.SanPham?.HinhAnh) || x.SanPham.HinhAnh.EndsWith(".svg", StringComparison.OrdinalIgnoreCase)
+                    ? FallbackProductImage
+                    : x.SanPham.HinhAnh,
                 Subtitle = x.SanPham?.MoTa ?? string.Empty,
                 Price = x.DonGiaBan,
                 Quantity = x.SoLuong,

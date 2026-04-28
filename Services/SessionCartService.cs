@@ -8,6 +8,7 @@ namespace SieuPetMvc.Services;
 public class SessionCartService : ICartService
 {
     private const string CartKey = "SieuPet.Cart";
+    private const string FallbackProductImage = "/images/products/image 22.jpg";
 
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ApplicationDbContext _context;
@@ -101,7 +102,9 @@ public class SessionCartService : ICartService
             {
                 ProductId = product.MaSanPham,
                 Name = product.TenSanPham,
-                ImageUrl = product.HinhAnh ?? "/images/products/default.svg",
+                ImageUrl = string.IsNullOrWhiteSpace(product.HinhAnh) || product.HinhAnh.EndsWith(".svg", StringComparison.OrdinalIgnoreCase)
+                    ? FallbackProductImage
+                    : product.HinhAnh,
                 Subtitle = product.MoTa ?? string.Empty,
                 Label = product.MaDanhMuc == "DM003" ? "Phu kien" : "Thu cung",
                 Quantity = quantity,

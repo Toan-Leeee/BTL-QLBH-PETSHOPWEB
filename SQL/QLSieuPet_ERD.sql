@@ -158,12 +158,12 @@ VALUES
 ('SP018', 'DM002', N'Alaskan Xam Trang Mini', 9700000, 1, N'Long day, mau dep, khoe manh', '/images/products/image 30.jpg', 1),
 ('PK001', 'DM003', N'Bat an chong truot', 320000, 18, N'Bat an cho thu cung', '/images/products/bowl.svg', 1),
 ('PK002', 'DM003', N'Day dat di dao', 180000, 25, N'Size M, mau navy', '/images/products/leash.svg', 1),
-('PK003', 'DM003', N'Vong co thu cung', 120000, 30, N'Chat lieu mem, nhieu mau', '/images/products/default.svg', 1),
-('PK004', 'DM003', N'Ao thu cung mua dong', 210000, 20, N'Giu am tot, vai mem', '/images/products/default.svg', 1),
-('PK005', 'DM003', N'Luoc chai long', 95000, 35, N'Giup lam muot va go roi long', '/images/products/default.svg', 1),
-('PK006', 'DM003', N'Sua tam thu cung', 135000, 40, N'Huong diu nhe, an toan da', '/images/products/default.svg', 1),
-('PK007', 'DM003', N'Do choi bong cao su', 70000, 50, N'Giup thu cung van dong tot hon', '/images/products/default.svg', 1),
-('PK008', 'DM003', N'Khay ve sinh thu cung', 280000, 16, N'Nhua ben, de lau chui', '/images/products/default.svg', 1);
+('PK003', 'DM003', N'Vong co thu cung', 120000, 30, N'Chat lieu mem, nhieu mau', '/images/products/image 22.jpg', 1),
+('PK004', 'DM003', N'Ao thu cung mua dong', 210000, 20, N'Giu am tot, vai mem', '/images/products/image 22.jpg', 1),
+('PK005', 'DM003', N'Luoc chai long', 95000, 35, N'Giup lam muot va go roi long', '/images/products/image 22.jpg', 1),
+('PK006', 'DM003', N'Sua tam thu cung', 135000, 40, N'Huong diu nhe, an toan da', '/images/products/image 22.jpg', 1),
+('PK007', 'DM003', N'Do choi bong cao su', 70000, 50, N'Giup thu cung van dong tot hon', '/images/products/image 22.jpg', 1),
+('PK008', 'DM003', N'Khay ve sinh thu cung', 280000, 16, N'Nhua ben, de lau chui', '/images/products/image 22.jpg', 1);
 GO
 
 INSERT INTO dbo.tblDonHang (PK_MaDH, FK_MaNV, FK_MaKH, dNgayTao, sTrangThai, mTongTien)

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const imagePreview = document.querySelector('[data-product-image-preview]');
   const form = document.querySelector('[data-admin-form="products"]');
   const selectedRow = document.querySelector('.admin-table .row-selected');
-  const fallbackImage = '/images/products/default.svg';
+  const fallbackImage = '/images/products/image 22.jpg';
 
   if (selectedRow) {
     selectedRow.scrollIntoView({ block: 'center', behavior: 'smooth' });

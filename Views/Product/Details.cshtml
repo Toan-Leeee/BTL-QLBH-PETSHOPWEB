@@ -1,16 +1,21 @@
 @model ProductDetailsViewModel
 @{
     ViewData["Title"] = Model.Product.TenSanPham;
+    const string fallbackDogImage = "/images/products/image 22.jpg";
+    string DisplayImage(string? imageUrl) =>
+        string.IsNullOrWhiteSpace(imageUrl) || imageUrl.EndsWith(".svg", StringComparison.OrdinalIgnoreCase)
+            ? fallbackDogImage
+            : imageUrl;
 }
 <section class="section section-light">
     <div class="container detail-layout">
         <div class="detail-gallery">
-            <img class="main-image" src="@Model.Product.HinhAnh" alt="@Model.Product.TenSanPham" />
+            <img class="main-image" src="@DisplayImage(Model.Product.HinhAnh)" alt="@Model.Product.TenSanPham" />
             <div class="thumb-grid">
-                <img src="@Model.Product.HinhAnh" alt="Ảnh 1" />
-                <img src="~/images/products/corgi.svg" alt="Ảnh 2" />
-                <img src="~/images/products/poodle-brown.svg" alt="Ảnh 3" />
-                <img src="~/images/products/shiba.svg" alt="Ảnh 4" />
+                <img src="@DisplayImage(Model.Product.HinhAnh)" alt="Ảnh 1" />
+                <img src="/images/products/image 23.jpg" alt="Ảnh 2" />
+                <img src="/images/products/image 24.jpg" alt="Ảnh 3" />
+                <img src="/images/products/image 25.jpg" alt="Ảnh 4" />
             </div>
         </div>
         <div class="detail-info">
@@ -47,7 +52,7 @@
     <div class="container story-strip">
         @foreach (var story in Model.CustomerStories)
         {
-            <div class="story-card"><img src="@story.ImageUrl" alt="@story.Title" /></div>
+            <div class="story-card"><img src="@DisplayImage(story.ImageUrl)" alt="@story.Title" /></div>
         }
     </div>
 </section>
@@ -63,7 +68,7 @@
         @foreach (var item in Model.RelatedProducts)
         {
             <article class="product-card">
-                <a asp-action="Details" asp-route-id="@item.MaSanPham"><img src="@item.HinhAnh" alt="@item.TenSanPham" /></a>
+                <a asp-action="Details" asp-route-id="@item.MaSanPham"><img src="@DisplayImage(item.HinhAnh)" alt="@item.TenSanPham" /></a>
                 <div class="product-body">
                     <h3>@item.TenSanPham</h3>
                     <p>@item.MoTa</p>
